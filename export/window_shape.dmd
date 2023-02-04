@@ -1,0 +1,245 @@
+```set template default.html```
+```set title window_shape cheat sheet```
+```set autoapi ext```
+```set intro
+This is a "cheat sheet" for "window_shape" extension by YellowAfterlife.\
+The extension can be found on [itch.io](https://yellowafterlife.itch.io/gamemaker-window-shape).
+```
+```gmlapi
+window_shape_operation_and = 1
+window_shape_operation_copy = 5
+window_shape_operation_diff = 4
+window_shape_operation_or = 2
+window_shape_operation_xor = 3
+window_shape_polygon_mode_alternate = 1
+window_shape_polygon_mode_winding = 2
+```
+#[Concepts]() {
+    This extension uses
+    [`SetWindowRgn`](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn),
+    which uses [GDI regions](https://learn.microsoft.com/en-us/windows/win32/gdi/regions).
+    
+    GDI regions are vector-based (consisting of rectangles, polygons, and ellipses)
+    rather than pixel-based,
+    which means that you can't have semi-transparent pixels on the window edge,
+    but you can do binary operations on shapes (like combining them together or applying a mask).
+    
+    If you've ever worked with vector graphics editors, this should sound familiar.
+    
+    There is a newer API
+    ([`UpdateLayeredWindow`](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-updatelayeredwindow))
+    that's pixel-based, but it requires broader changes to how application renders graphics,
+    which I would expect to backfire in a variety of unpredictable ways.
+    
+    Some functions consume the inputs, meaning that the underlying native object is destroyed
+    and the reference is invalidated - you don't have to call [window_shape_destroy] on them
+    and you cannot use them in further functions.
+    
+    Changing a window's shape forces a redraw
+}
+#[Setting up](setup) {
+    --{
+    -   The underlying API is primarly intended for use with borderless windows.\
+        While you _can_ use it with regular windows, doing so degrades the window to some kind of
+        Win2K-era appearance... you have to see it yourself, really.
+        
+        You can enable borderless window mode in --{
+            - GMS1: Global Game Settings - Windows - Graphics
+            - GMS2: Game Options - Windows - Graphics
+        }
+    -   Import the extension to your project: --{
+            - GMS1: Right-click "Extensions" in resource tree, pick "Import", pick the GMEZ file.
+            - GMS2.2: Drag-and-drop the YYMP file onto the workspace area of the IDE.
+            - GMS2.3: menu:Tools - Import Local Asset Package
+        }
+    -   Call [`window_shape_init()`](window_shape_init) somewhere on game start / before using other functions.
+    -   [Create a shape](window_shape_create)
+    -   [Apply it to the window](window_shape_set_reset)
+    }
+}
+#[window_shape_init()]() {
+    Initializes the extension.
+    
+    Should be ran before doing anything else.
+}
+#[Creating shapes](window_shape_create) {
+    Coordinates are in pixels relative to window's top-left corner.
+    #[window_shape_create_empty()->]() {
+        Creates an empty shape (formally a zero-size rectangle).
+    }
+    #[Basic shapes] {
+        #[window_shape_create_rectangle(x1, y1, x2, y2)->]() {
+            Creates a rectangle shape.
+        }
+        #[window_shape_create_round_rectangle(x1, y1, x2, y2, w, h)->]() {
+            Creates a rounded rectangle shape (w, h being corner radii).
+        }
+        #[window_shape_create_ellipse(x1, y1, x2, y2)->]() {
+            Creates an elliptical shape.
+        }
+        #[window_shape_create_circle(x, y, radius)->]() {
+            Creates a circular shape, by which I mean: this is just a shorthand for the ellipse shape.
+        }
+    }
+    #[Polygons] {
+        #[window_shape_create_polygon_from_array(array, mode, ?count)->]() {
+            Takes an array of x,y coordinate pairs and creates a polygon shape out of it.
+            
+            `mode` can be: --{
+            -   `window_shape_polygon_mode_winding`\
+                The polygon is filled normally.
+            -   `window_shape_polygon_mode_alternate`\
+                XOR-like logic is applied to polygon when it intersects itself.
+            }
+            
+            
+            `count` is the number of points in the array.\
+            If not specified, it is set to (length of the array)/2.
+            
+            For a practical example, if you do
+            ```gml
+            var arr = [];
+            var angle = 30;
+            var mode = window_shape_polygon_mode_alternate;
+            repeat (5) {
+                array_push(arr,
+                    200 + lengthdir_x(200, angle),
+                    200 + lengthdir_y(200, angle),
+                );
+                angle += 360/5*2;
+            }
+            window_shape_set(window_shape_create_polygon_from_array(arr, mode));
+            ```
+            with "alternate" mode, the star would have a hole in the middle,
+            while with "winding" mode it won't.
+        }
+        #[window_shape_create_polygon_from_buffer(buffer, mode, count = -1)->]() {
+            Same as above, but accepts a buffer with series of `buffer_s32` x,y coordinate pairs.
+            
+            If `count` is -1, it is set to `buffer_tell(buf) div 8`.
+            
+            Buffer can be safely destroyed afterwards.
+        }
+        #[window_shape_create_polygon_from_path(path, mode)->]() {
+            Creates a shape from a GameMaker path.
+            
+            Supports smooth paths somewhat accurately.
+        }
+    }
+    #[""Pixel""" shapes] {
+        By which I mean, a pile of rectangles (one per row of connected pixels).
+        
+        These are kind of slow and I strongly encourage you to use polygons instead.
+        #[window_shape_create_rectangles_from_rgba(buffer, tolerance, width, height)->]() {
+            Creates a shape from pixel data in a buffer -
+            any pixel with opacity above `tolerance` will be filled.
+            
+            `width` and `height` specify dimensions, in pixels.
+        }
+        #[window_shape_create_rectangles_from_surface(surface, tolerance)->]() {
+            A convenience wrapper for above, creates a shape from pixels in a surface.
+        }
+        #[window_shape_create_rectangles_from_sprite(surface, tolerance)->]() {
+            A convenience wrapper for above, creates a shape from pixels in a sprite.
+        }
+    }
+}
+#[Shape manipulations](window_shape_manip) {
+    #[window_shape_duplicate(shape)->]() {
+        Creates an independent copy of the given shape.
+    }
+    #[window_shape_destroy(shape)->]() {
+        Destroys the given shape.
+    }
+    Transformations:
+    #[window_shape_shift(shape, xoffset, yoffset)->]() {
+        Moves the shape around by a specified offset.
+    }
+    #[window_shape_transform(shape, m11, m12, m21, m22, dx, dy)->]() {
+        Transforms a shape through a 2d matrix, but... the documentation for underlying function
+        says that this converts the shape to rectangles first (??), so the results vary.
+        
+        The following would give the window an appearance of a slightly skewed circle, for example
+        ```gml
+        var _circle = window_shape_create_circle(100, 100, 100);
+        var _transf = window_shape_transform(_circle, 1, -0.2, -0.2, 1, 50, 50);
+        window_shape_set(_transf);
+        window_shape_destroy(_circle);
+        ```
+    }
+    Binary operations:
+    #[window_shape_combine(shape1, shape2, op)->]() {
+        Combines the two shapes into a new one and returns it.
+        
+        *The inputs are consumed in the process.*
+        
+        `op` can be one of the following: --{
+        -- `window_shape_operation_and`\
+            The result is the overlap between the shapes.
+        -- `window_shape_operation_copy`\
+            The result is the first shape.
+        -- `window_shape_operation_diff`\
+            Subtracts shape2 from shape1.
+        -- `window_shape_operation_or`\
+            The result is a union between two shapes.
+        -- `window_shape_operation_xor`\
+            The result is an exclusion between two shapes (overlaps are empty).
+        }
+        See [MSDN](https://learn.microsoft.com/en-us/windows/win32/gdi/combining-regions)
+        for an illustrated example of what each mode does.
+        
+        The following would give the window an appearance of a donut
+        (a circle with a hole in the middle):
+        ```gml
+        window_shape_set(window_shape_combine(
+            window_shape_create_circle(100, 100, 100),
+            window_shape_create_circle(100, 100, 40),
+            window_shape_operation_diff
+        ));
+        ```
+    }
+    #[window_shape_combine_nc(shape1, shape2, op)->]() {
+        Like `window_shape_combine`, but does not consume the shapes.
+    }
+    #[window_shape_concat(shape1, shape2, op)->]() {
+        Like `window_shape_combine`, but the result is kept in `shape1` instead of creating a new one.
+        
+        *The second shape is consumed in the process.*
+        
+        Returns whether successful.
+    }
+    #[window_shape_concat_nc(shape1, shape2, op)->]() {
+        Like `window_shape_concat`, but does not consume anything.
+    }
+    Utilities:
+    #[window_shape_contains_point(shape, x, y)->]() {
+        Contains whether the point is within a shape.
+        
+        For purposes of checking whether the mouse is over a custom-shaped window,
+        you will probably want to use `display_mouse_get_x() - window_get_x()`
+        rather than `window_mouse_get_x()`
+        (which would only update while the mouse is over the window).
+    }
+    #[window_shape_contains_rectangle(shape, x1, y1, x2, y2)->]() {
+        Contains whether a rectangle is within a shape.
+    }
+}
+#[Setting and resetting](window_shape_set_reset) {
+    #[window_shape_set(shape)]() {
+        Applies the given shape to the game window.
+        
+        *This function consumes the shape.*
+        
+        That isn't my idea - the WinAPI function
+        [has it](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn#remarks)
+        that after the call the region is confiscated from you and the system will manage it
+        (including destroying it once the window closes or a different region is applied).
+    }
+    #[window_shape_set_nc(shape)]() {
+        Like above, but does not consume the shape
+        (by giving WinAPI a copy rather than the original).
+    }
+    #[window_shape_reset()]() {
+        Returns your window to its original, rectangular form.
+    }
+}

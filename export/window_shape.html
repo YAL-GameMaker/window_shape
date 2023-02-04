@@ -1,0 +1,674 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>window_shape cheat sheet</title>
+<meta name="viewport" content="width=device-width" />
+<meta name="livenode" content="#doc" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="en_us" />
+<meta property="og:site_name" content="YellowAfterlife" />
+<meta property="og:title" content="window_shape cheat sheet" />
+<script type="text/javascript">
+if (document.location.host == "yal.cc" && location.protocol == "http:") {
+	document.location.protocol = "https:";
+}
+</script>
+<style type="text/css">body, #doc tt, #doc code {
+	font: 15px 'Open Sans', sans-serif;
+	line-height: 1.35;
+}
+body {
+	margin: 0;
+}
+.main {
+	width: 100%;
+	min-height: 100%;
+	min-height: 100vh;
+	background-color: #f5f7f9;
+}
+.page {
+	max-width: 656px;
+	background: #ffffff;
+	margin: 0 auto;
+	padding: 8px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	min-height: 100%;
+	min-height: 100vh;
+	box-sizing: border-box;
+}
+.page > p:first-child {
+	margin-top: 0;
+}
+#doc, #doc ul, #doc ol {
+	padding-left: 0;
+	margin: 0;
+}
+#doc article > ul, #doc article > ol {
+	padding-left: 20px;
+}
+#doc article ul li {
+	list-style: disc;
+	list-style-image: url('data:image/svg+xml;base256,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="1em" viewBox="0 0 20px 1em"><circle cx="17px" cy="0.675em" r="2px"/></svg>'); 
+}
+
+#doc header {
+	margin: 0;
+	font-weight: 700;
+	font-size: 100%;
+	color: #458;
+	border-left: 2px solid #f3f3f3;/* #f9f9f9*/
+	padding-left: 4px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+#doc header a {
+	outline: none;
+	text-decoration: none;
+	color: #458;
+	word-break: break-word;
+}
+#doc header::before {
+	display: inline-block;
+	content: "+";
+	font: 12px monospace;
+	border: 1px solid #458;
+	line-height: 11px;
+	height: 11px;
+	width: 11px;
+	text-align: center;
+	border-radius: 50%;
+	margin-right: 4px;
+	vertical-align: middle;
+	flex-shrink: 0;
+}
+#doc section.open > header::before {
+	content: "-";
+}
+#doc section.empty > header::before {
+	content: " "; /*"·"*/
+}
+#doc header:hover {
+	border-left-color: #f3f3f3;
+	background: #f3f3f3;
+}
+#doc header .ret-arrow {
+	font-weight: normal;
+	margin: 0 0.1em;
+}
+
+#doc a.broken {
+	color: red;
+}
+#doc p, .intro p {
+	margin: 0;
+}
+#doc p + p, .intro p + p, #doc p.pad, .display-controls {
+	margin-top: 0.5em;
+}
+#doc img {
+	max-width: 100%;
+}
+#doc h3 {
+	margin: 0.25em 0;
+	font-size: 125%;
+	font-weight: normal;
+	border-bottom: 1px solid #ccc;
+}
+
+#doc article, #doc ul {
+	padding-left: 20px;
+	border-left: 2px solid #f3f3f3;
+}
+#doc article {
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
+}
+#doc tt {
+	font-weight: bold;
+}
+#doc code {
+	display: inline-block;
+	background: #FFFBE4;
+	font-family: Consolas, Ubuntu Mono, Dejavu Sans Mono, Lucida Console, monospace;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 16px;
+	padding: 0 2px;
+	border: 1px solid #E6E0C4;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	max-width: 100%;
+	word-break: break-word;
+}
+
+#doc table {
+	border-spacing: 0;
+	color: currentColor;
+}
+#doc table, #doc table td, #doc table th {
+	border: 1px solid #f3f3f3;
+}
+#doc table td, #doc table th {
+	padding: 0.1em 0.5em;
+}
+#doc pre {
+	font-family: Consolas, Dejavu Sans Mono, Segoe UI Mono, Ubuntu Mono, Lucida Console, monospace;
+	font-size: 9pt;
+	line-height: 1.25;
+	background: white;
+	padding: 4px 2px 4px 10px;
+	margin: 0;
+	-moz-tab-size: 4;
+	tab-size: 4;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+#doc pre a {
+	text-decoration: none;
+}
+#doc pre a.uf {
+	background-color: #f7f0ff;
+}
+#doc pre a.kw {
+	background-color: #f0f7ff;
+}
+#doc pre a.sf, #doc pre a.sv {
+	background-color: #fff3f0;
+}
+#doc pre a:hover {
+	text-decoration: underline;
+}
+#doc abbr[title] {
+	text-decoration: underline;
+	-webkit-text-decoration-color: #bbb;
+	text-decoration-color: #bbb;
+	-webkit-text-decoration-style: double;
+	text-decoration-style: double;
+}
+#doc hr {
+	margin: 0.5em 0;
+	margin-right: 1em;
+	border: 0;
+	border-top: 2px dashed #f3f3f3;
+}
+#doc section + hr {
+	margin: 0;
+	height: 1em;
+	border: 1px solid #f3f3f3;
+	border-width: 1px 0 1px 0;
+}
+#doc section {
+	border-top: 1px solid #f3f3f3;
+	margin-top: 0.3em;
+}
+#doc section:first-child {
+	margin-top: 0em;
+}
+#doc section:last-child {
+	border-bottom: 1px solid #f3f3f3;
+}
+#doc section + section, #doc hr + section {
+	border-top: 0;
+	margin-top: 0;
+}
+#doc section + p {
+	border-top: 1px solid #f3f3f3;
+	padding-top: 0.3em;
+}
+/* delay display until load */
+#doc[ready] section:not(.open) > article {
+	display: none;
+}</style>
+<style type="text/css" id="lang_gml">/* GameMakerLanguage */
+pre.gmlmd .md { color: #7A81A9 } /* #define */
+pre.gmlmd .kw { color: #008; font-weight: bold } /* keyword */
+pre.gmlmd .co { color: #080 } /* comment */
+pre.gmlmd .nu { color: #00f } /* number */
+pre.gmlmd .nx { color: #00f } /* hex */
+pre.gmlmd .st { color: #00f } /* string */
+pre.gmlmd .ts { color: #00f } /* template string */
+pre.gmlmd .op { color: #000 } /* operator */
+pre.gmlmd .cb { color: #008; font-weight: bold } /* curly brace */
+pre.gmlmd .sv { color: #800 } /* std func */
+pre.gmlmd .sf { color: #800 } /* std var */
+pre.gmlmd .ri { color: #0078aa } /* assets */
+pre.gmlmd .uf { color: #808 } /* user func */
+pre.gmlmd .uv { color: #000 } /* user var */
+pre.gmlmd .lv { color: #648 } /* local var */
+pre.gmlmd .fd { color: #804 } /* field */
+
+#night:checked + .main pre.gmlmd .op { color: #CCCCCC }
+#night:checked + .main pre.gmlmd .co { color: #5B995B }
+#night:checked + .main pre.gmlmd .kw { color: #FFB871 }
+#night:checked + .main pre.gmlmd .md { color: #FFB871 }
+#night:checked + .main pre.gmlmd .cb { color: #FFB871 }
+#night:checked + .main pre.gmlmd .sf { color: #FFB871 }
+#night:checked + .main pre.gmlmd .uf { color: #FFB871 }
+#night:checked + .main pre.gmlmd .nu { color: #FF8080 }
+#night:checked + .main pre.gmlmd .st { color: #FCF320 }
+#night:checked + .main pre.gmlmd .ts { color: #FF8080 }
+#night:checked + .main pre.gmlmd .sv { color: #FF8080 }
+#night:checked + .main pre.gmlmd .gv { color: #FF80FF }
+#night:checked + .main pre.gmlmd .ri { color: #FF8080 }
+#night:checked + .main pre.gmlmd .lv { color: #FFF899 }
+#night:checked + .main pre.gmlmd .uv { color: #B2B1FF }
+#night:checked + .main pre.gmlmd .fd { color: #B2B1FF }
+
+#night:checked + .main pre.gmlmd a.uf,
+#night:checked + .main pre.gmlmd a.kw,
+#night:checked + .main pre.gmlmd a.sf {
+	background-color: #431;
+}
+#night:checked + .main pre.gmlmd a.sv {
+	background-color: #422;
+}</style>
+<style type="text/css" id="night_css">.main label[for="night"] {
+	cursor: pointer;
+}
+#night { display: none }
+#night:checked + .main {
+	background-color: #424242;
+}
+#night:checked + .main .page {
+	background-color: #1c1c1c;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	color: white;
+}
+#night:checked + .main a,
+#night:checked + .main a:visited,
+#night:checked + .main #doc header,
+#night:checked + .main label[for="night"] {
+	color: #9DEC76;
+}
+#night:checked + .main #doc header:before,
+#night:checked + .main #doc h3 {
+	border-color: #9DEC76
+}
+#night:checked + .main #doc header,
+#night:checked + .main #doc header:hover,
+#night:checked + .main #doc article,
+#night:checked + .main #doc section,
+#night:checked + .main #doc section + p,
+#night:checked + .main #doc hr,
+#night:checked + .main #doc ul,
+#night:checked + .main #doc table,
+#night:checked + .main #doc table td,
+#night:checked + .main #doc table th
+{
+	border-color: rgba(205,225,255,0.1);
+}
+#night:checked + .main #doc header:hover,
+#night:checked + .main #doc .asset:hover {
+	background: rgba(205,225,255,0.1);
+}
+#night:checked + .main article ul li {
+	list-style-image: url('data:image/svg+xml;base256,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="1em" viewBox="0 0 20px 1em"><circle cx="17px" cy="0.675em" r="2px" fill="white"/></svg>'); 
+}
+#night:checked + .main pre {
+	color: #cccccc;
+	background: #000000;
+	border: 1px solid #3E4757;
+}
+#night:checked + .main #doc code {
+	background-color: #000;
+	border-color: #5b7c9f;
+	color: white;
+}</style>
+<style type="text/css" id="print_css">@media print {
+	.main { background-color: transparent }
+	.display-controls { display: none; }
+	.page { width: 100%; box-shadow: none; }
+	#doc header::before,
+	#doc section.open header::before	{
+		content: "~";
+	}
+	#doc { display: inherit }
+	#doc section:not(.open) > article,
+	#doc[ready] section:not(.open) > article {
+		display: inherit;
+	}
+}</style>
+<noscript><style>#doc header::before {
+	content: "~";
+}
+#doc header:hover {
+	border-left-color: #f3f3f3;
+	background: inherit;
+}
+#doc { display: inherit }
+#doc section:not(.open) > article {
+	display: inherit;
+}</style></noscript>
+</head><body>
+<input type="checkbox" id="night" checked/>
+<div class="main ">
+<script type="text/javascript">(function() {
+	var night = document.getElementById("night");
+	var path = "docmd night mode";
+	var ls = window.localStorage;
+	if (ls) {
+		night.checked = ls.getItem(path) == "true";
+		night.onchange = function(_) {
+			ls.setItem(path, "" + night.checked);
+		};
+	}
+})();</script>
+<main class="page">
+<section class="intro">This is a "cheat sheet" for "window_shape" extension by YellowAfterlife.<br/>
+The extension can be found on <a href="https://yellowafterlife.itch.io/gamemaker-window-shape">itch.io</a>.</section><section class="display-controls">
+Click on sections to expand/collapse them.<br>Quick display controls:
+<a href="javascript:void(0)" onclick="opt_none(); return false">Categories</a>
+&middot; <a href="javascript:void(0)" onclick="opt_list(); return false">Sections</a>
+&middot; <a href="javascript:void(0)" onclick="opt_all(); return false">Everything</a>
+&middot; <a href="javascript:void(0)"><label for="night">Toggle night mode</label></a><br/>
+</section><section id="doc">
+<!--<doc--><p>
+<style>
+.main {
+	background-color: #889EC5;
+}
+#night:checked + .main {
+	background-color: #405070;
+}
+</style>
+<section><header id="Concepts"><a href="#Concepts" title="(permalink)">Concepts</a></header><article><p>
+    This extension uses
+    <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn"><code>SetWindowRgn</code></a>,
+    which uses <a href="https://learn.microsoft.com/en-us/windows/win32/gdi/regions">GDI regions</a>.
+    </p><p>
+    GDI regions are vector-based (consisting of rectangles, polygons, and ellipses)
+    rather than pixel-based,
+    which means that you can't have semi-transparent pixels on the window edge,
+    but you can do binary operations on shapes (like combining them together or applying a mask).
+    </p><p>
+    If you've ever worked with vector graphics editors, this should sound familiar.
+    </p><p>
+    There is a newer API
+    (<a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-updatelayeredwindow"><code>UpdateLayeredWindow</code></a>)
+    that's pixel-based, but it requires broader changes to how application renders graphics,
+    which I would expect to backfire in a variety of unpredictable ways.
+    </p><p>
+    Some functions consume the inputs, meaning that the underlying native object is destroyed
+    and the reference is invalidated - you don't have to call <a href="#window_shape_destroy">window_shape_destroy</a> on them
+    and you cannot use them in further functions.
+    </p><p>
+    Changing a window's shape forces a redraw
+</p></article></section><section><header id="setup"><a href="#setup" title="(permalink)">Setting up</a></header><article><ul>
+    <li><p>   The underlying API is primarly intended for use with borderless windows.<br/>
+        While you <i>can</i> use it with regular windows, doing so degrades the window to some kind of
+        Win2K-era appearance... you have to see it yourself, really.
+        </p><p>
+        You can enable borderless window mode in </p><ul>
+            <li> GMS1: Global Game Settings - Windows - Graphics
+            </li><li> GMS2: Game Options - Windows - Graphics
+        </li></ul></li><li><p>   Import the extension to your project: </p><ul>
+            <li> GMS1: Right-click "Extensions" in resource tree, pick "Import", pick the GMEZ file.
+            </li><li> GMS2.2: Drag-and-drop the YYMP file onto the workspace area of the IDE.
+            </li><li> GMS2.3: menu:Tools - Import Local Asset Package
+        </li></ul></li><li>   Call <a href="#window_shape_init"><code>window_shape_init()</code></a> somewhere on game start / before using other functions.
+    </li><li>   <a href="#window_shape_create">Create a shape</a>
+    </li><li>   <a href="#window_shape_set_reset">Apply it to the window</a>
+    </li></ul></article></section><section><header id="window_shape_init"><a href="#window_shape_init" title="(permalink)">window_shape_init()</a></header><article><p>
+    Initializes the extension.
+    </p><p>
+    Should be ran before doing anything else.
+</p></article></section><section><header id="window_shape_create"><a href="#window_shape_create" title="(permalink)">Creating shapes</a></header><article><p>
+    Coordinates are in pixels relative to window's top-left corner.
+    </p><section><header id="window_shape_create_empty"><a href="#window_shape_create_empty" title="(permalink)">window_shape_create_empty()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Creates an empty shape (formally a zero-size rectangle).
+    </p></article></section><section><header>Basic shapes</header><article><section><header id="window_shape_create_rectangle"><a href="#window_shape_create_rectangle" title="(permalink)">window_shape_create_rectangle(x1, y1, x2, y2)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Creates a rectangle shape.
+        </p></article></section><section><header id="window_shape_create_round_rectangle"><a href="#window_shape_create_round_rectangle" title="(permalink)">window_shape_create_round_rectangle(x1, y1, x2, y2, w, h)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Creates a rounded rectangle shape (w, h being corner radii).
+        </p></article></section><section><header id="window_shape_create_ellipse"><a href="#window_shape_create_ellipse" title="(permalink)">window_shape_create_ellipse(x1, y1, x2, y2)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Creates an elliptical shape.
+        </p></article></section><section><header id="window_shape_create_circle"><a href="#window_shape_create_circle" title="(permalink)">window_shape_create_circle(x, y, radius)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Creates a circular shape, by which I mean: this is just a shorthand for the ellipse shape.
+        </p></article></section></article></section><section><header>Polygons</header><article><section><header id="window_shape_create_polygon_from_array"><a href="#window_shape_create_polygon_from_array" title="(permalink)">window_shape_create_polygon_from_array(array, mode, ?count)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Takes an array of x,y coordinate pairs and creates a polygon shape out of it.
+            </p><p>
+            <code>mode</code> can be: </p><ul>
+            <li>   <code>window_shape_polygon_mode_winding</code><br/>
+                The polygon is filled normally.
+            </li><li>   <code>window_shape_polygon_mode_alternate</code><br/>
+                XOR-like logic is applied to polygon when it intersects itself.
+            </li></ul><p>
+            <br/>
+            <code>count</code> is the number of points in the array.<br/>
+            If not specified, it is set to (length of the array)/2.
+            </p><p>
+            For a practical example, if you do
+            </p><pre class="gmlmd">
+<span class="kw">var</span> <span class="lv">arr</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span><span class="op">;</span>
+<span class="kw">var</span> <span class="lv">angle</span> <span class="op">=</span> <span class="nu">30</span><span class="op">;</span>
+<span class="kw">var</span> <span class="lv">mode</span> <span class="op">=</span> <span class="sv">window_shape_polygon_mode_alternate</span><span class="op">;</span>
+<span class="kw">repeat</span> <span class="op">(</span><span class="nu">5</span><span class="op">)</span> <span class="cb">{</span>
+    <span class="uf">array_push</span><span class="op">(</span><span class="lv">arr</span><span class="op">,</span>
+        <span class="nu">200</span> <span class="op">+</span> <span class="uf">lengthdir_x</span><span class="op">(</span><span class="nu">200</span><span class="op">,</span> <span class="lv">angle</span><span class="op">)</span><span class="op">,</span>
+        <span class="nu">200</span> <span class="op">+</span> <span class="uf">lengthdir_y</span><span class="op">(</span><span class="nu">200</span><span class="op">,</span> <span class="lv">angle</span><span class="op">)</span><span class="op">,</span>
+    <span class="op">)</span><span class="op">;</span>
+    <span class="lv">angle</span> <span class="op">+=</span> <span class="nu">360</span><span class="op">/</span><span class="nu">5</span><span class="op">*</span><span class="nu">2</span><span class="op">;</span>
+<span class="cb">}</span>
+<a class="sf" href="#window_shape_set">window_shape_set</a><span class="op">(</span><a class="sf" href="#window_shape_create_polygon_from_array">window_shape_create_polygon_from_array</a><span class="op">(</span><span class="lv">arr</span><span class="op">,</span> <span class="lv">mode</span><span class="op">)</span><span class="op">)</span><span class="op">;</span>
+</pre><p>
+            with "alternate" mode, the star would have a hole in the middle,
+            while with "winding" mode it won't.
+        </p></article></section><section><header id="window_shape_create_polygon_from_buffer"><a href="#window_shape_create_polygon_from_buffer" title="(permalink)">window_shape_create_polygon_from_buffer(buffer, mode, count = -1)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Same as above, but accepts a buffer with series of <code>buffer_s32</code> x,y coordinate pairs.
+            </p><p>
+            If <code>count</code> is -1, it is set to <code>buffer_tell(buf) div 8</code>.
+            </p><p>
+            Buffer can be safely destroyed afterwards.
+        </p></article></section><section><header id="window_shape_create_polygon_from_path"><a href="#window_shape_create_polygon_from_path" title="(permalink)">window_shape_create_polygon_from_path(path, mode)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Creates a shape from a GameMaker path.
+            </p><p>
+            Supports smooth paths somewhat accurately.
+        </p></article></section></article></section><section><header>""Pixel""" shapes</header><article><p>
+        By which I mean, a pile of rectangles (one per row of connected pixels).
+        </p><p>
+        These are kind of slow and I strongly encourage you to use polygons instead.
+        </p><section><header id="window_shape_create_rectangles_from_rgba"><a href="#window_shape_create_rectangles_from_rgba" title="(permalink)">window_shape_create_rectangles_from_rgba(buffer, tolerance, width, height)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            Creates a shape from pixel data in a buffer -
+            any pixel with opacity above <code>tolerance</code> will be filled.
+            </p><p>
+            <code>width</code> and <code>height</code> specify dimensions, in pixels.
+        </p></article></section><section><header id="window_shape_create_rectangles_from_surface"><a href="#window_shape_create_rectangles_from_surface" title="(permalink)">window_shape_create_rectangles_from_surface(surface, tolerance)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            A convenience wrapper for above, creates a shape from pixels in a surface.
+        </p></article></section><section><header id="window_shape_create_rectangles_from_sprite"><a href="#window_shape_create_rectangles_from_sprite" title="(permalink)">window_shape_create_rectangles_from_sprite(surface, tolerance)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+            A convenience wrapper for above, creates a shape from pixels in a sprite.
+        </p></article></section></article></section></article></section><section><header id="window_shape_manip"><a href="#window_shape_manip" title="(permalink)">Shape manipulations</a></header><article><section><header id="window_shape_duplicate"><a href="#window_shape_duplicate" title="(permalink)">window_shape_duplicate(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Creates an independent copy of the given shape.
+    </p></article></section><section><header id="window_shape_destroy"><a href="#window_shape_destroy" title="(permalink)">window_shape_destroy(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Destroys the given shape.
+    </p></article></section><p>
+    Transformations:
+    </p><section><header id="window_shape_shift"><a href="#window_shape_shift" title="(permalink)">window_shape_shift(shape, xoffset, yoffset)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Moves the shape around by a specified offset.
+    </p></article></section><section><header id="window_shape_transform"><a href="#window_shape_transform" title="(permalink)">window_shape_transform(shape, m11, m12, m21, m22, dx, dy)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Transforms a shape through a 2d matrix, but... the documentation for underlying function
+        says that this converts the shape to rectangles first (??), so the results vary.
+        </p><p>
+        The following would give the window an appearance of a slightly skewed circle, for example
+        </p><pre class="gmlmd">
+<span class="kw">var</span> <span class="lv">_circle</span> <span class="op">=</span> <a class="sf" href="#window_shape_create_circle">window_shape_create_circle</a><span class="op">(</span><span class="nu">100</span><span class="op">,</span> <span class="nu">100</span><span class="op">,</span> <span class="nu">100</span><span class="op">)</span><span class="op">;</span>
+<span class="kw">var</span> <span class="lv">_transf</span> <span class="op">=</span> <a class="sf" href="#window_shape_transform">window_shape_transform</a><span class="op">(</span><span class="lv">_circle</span><span class="op">,</span> <span class="nu">1</span><span class="op">,</span> <span class="op">-</span><span class="nu">0.2</span><span class="op">,</span> <span class="op">-</span><span class="nu">0.2</span><span class="op">,</span> <span class="nu">1</span><span class="op">,</span> <span class="nu">50</span><span class="op">,</span> <span class="nu">50</span><span class="op">)</span><span class="op">;</span>
+<a class="sf" href="#window_shape_set">window_shape_set</a><span class="op">(</span><span class="lv">_transf</span><span class="op">)</span><span class="op">;</span>
+<a class="sf" href="#window_shape_destroy">window_shape_destroy</a><span class="op">(</span><span class="lv">_circle</span><span class="op">)</span><span class="op">;</span>
+</pre></article></section><p>
+    Binary operations:
+    </p><section><header id="window_shape_combine"><a href="#window_shape_combine" title="(permalink)">window_shape_combine(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Combines the two shapes into a new one and returns it.
+        </p><p>
+        <b>The inputs are consumed in the process.</b>
+        </p><p>
+        <code>op</code> can be one of the following: </p><ul>
+        <li> <code>window_shape_operation_and</code><br/>
+            The result is the overlap between the shapes.
+        </li><li> <code>window_shape_operation_copy</code><br/>
+            The result is the first shape.
+        </li><li> <code>window_shape_operation_diff</code><br/>
+            Subtracts shape2 from shape1.
+        </li><li> <code>window_shape_operation_or</code><br/>
+            The result is a union between two shapes.
+        </li><li> <code>window_shape_operation_xor</code><br/>
+            The result is an exclusion between two shapes (overlaps are empty).
+        </li></ul><p>
+        See <a href="https://learn.microsoft.com/en-us/windows/win32/gdi/combining-regions">MSDN</a>
+        for an illustrated example of what each mode does.
+        </p><p>
+        The following would give the window an appearance of a donut
+        (a circle with a hole in the middle):
+        </p><pre class="gmlmd">
+<a class="sf" href="#window_shape_set">window_shape_set</a><span class="op">(</span><a class="sf" href="#window_shape_combine">window_shape_combine</a><span class="op">(</span>
+    <a class="sf" href="#window_shape_create_circle">window_shape_create_circle</a><span class="op">(</span><span class="nu">100</span><span class="op">,</span> <span class="nu">100</span><span class="op">,</span> <span class="nu">100</span><span class="op">)</span><span class="op">,</span>
+    <a class="sf" href="#window_shape_create_circle">window_shape_create_circle</a><span class="op">(</span><span class="nu">100</span><span class="op">,</span> <span class="nu">100</span><span class="op">,</span> <span class="nu">40</span><span class="op">)</span><span class="op">,</span>
+    <span class="sv">window_shape_operation_diff</span>
+<span class="op">)</span><span class="op">)</span><span class="op">;</span>
+</pre></article></section><section><header id="window_shape_combine_nc"><a href="#window_shape_combine_nc" title="(permalink)">window_shape_combine_nc(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Like <code>window_shape_combine</code>, but does not consume the shapes.
+    </p></article></section><section><header id="window_shape_concat"><a href="#window_shape_concat" title="(permalink)">window_shape_concat(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Like <code>window_shape_combine</code>, but the result is kept in <code>shape1</code> instead of creating a new one.
+        </p><p>
+        <b>The second shape is consumed in the process.</b>
+        </p><p>
+        Returns whether successful.
+    </p></article></section><section><header id="window_shape_concat_nc"><a href="#window_shape_concat_nc" title="(permalink)">window_shape_concat_nc(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Like <code>window_shape_concat</code>, but does not consume anything.
+    </p></article></section><p>
+    Utilities:
+    </p><section><header id="window_shape_contains_point"><a href="#window_shape_contains_point" title="(permalink)">window_shape_contains_point(shape, x, y)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Contains whether the point is within a shape.
+        </p><p>
+        For purposes of checking whether the mouse is over a custom-shaped window,
+        you will probably want to use <code>display_mouse_get_x() - window_get_x()</code>
+        rather than <code>window_mouse_get_x()</code>
+        (which would only update while the mouse is over the window).
+    </p></article></section><section><header id="window_shape_contains_rectangle"><a href="#window_shape_contains_rectangle" title="(permalink)">window_shape_contains_rectangle(shape, x1, y1, x2, y2)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Contains whether a rectangle is within a shape.
+    </p></article></section></article></section><section><header id="window_shape_set_reset"><a href="#window_shape_set_reset" title="(permalink)">Setting and resetting</a></header><article><section><header id="window_shape_set"><a href="#window_shape_set" title="(permalink)">window_shape_set(shape)</a></header><article><p>
+        Applies the given shape to the game window.
+        </p><p>
+        <b>This function consumes the shape.</b>
+        </p><p>
+        That isn't my idea - the WinAPI function
+        <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn#remarks">has it</a>
+        that after the call the region is confiscated from you and the system will manage it
+        (including destroying it once the window closes or a different region is applied).
+    </p></article></section><section><header id="window_shape_set_nc"><a href="#window_shape_set_nc" title="(permalink)">window_shape_set_nc(shape)</a></header><article><p>
+        Like above, but does not consume the shape
+        (by giving WinAPI a copy rather than the original).
+    </p></article></section><section><header id="window_shape_reset"><a href="#window_shape_reset" title="(permalink)">window_shape_reset()</a></header><article><p>
+        Returns your window to its original, rectangular form.
+    </p></article></section></article></section></p><!--doc>-->
+</section></main></div>
+<script type="text/javascript">(function() {
+	var doc, headers;
+	//
+	var path = "window_shape cheat sheet";
+	var state = null;
+	if (window.localStorage && JSON.parse) {
+		state = window.localStorage.getItem(path);
+		state = state ? JSON.parse(state) : { };
+		if (state == null) state = { };
+	}
+	var isLocal = (location.host.indexOf("localhost") == 0);
+	//
+	function h3bind(h3) {
+		var node = h3.parentNode;
+		var snip = node.children[1];
+		var id = h3.id || h3.textContent;
+		h3.snip = snip;
+		h3.doc_set = function(z) {
+			if (z) node.classList.add("open"); else node.classList.remove("open");
+			if (state) {
+				state[id] = z;
+				window.localStorage.setItem(path, JSON.stringify(state));
+			}
+		}
+		h3.doc_hide = function() {
+			this.doc_set(false);
+		}
+		h3.doc_show = function() {
+			this.doc_set(true);
+		}
+		h3.onclick = function(_) {
+			var seen = !node.classList.contains("open");
+			h3.doc_set(seen);
+			return false;
+		};
+	}
+	function getHashFunc(id) {
+		var node = document.getElementById(id);
+		if (node == null) return null;
+		return function(e) {
+			while (node && node != doc) {
+				if (node.classList.contains("item")) {
+					node.classList.add("open");
+				}
+				node = node.parentElement;
+			}
+		};
+	}
+	// Display helpers:
+	window.opt_none = function() {
+		for (var li = 0; li < headers.length; li++) headers[li].doc_hide();
+	};
+	window.opt_list = function() {
+		for (var li = 0; li < headers.length; li++) {
+			var h3 = headers[li];
+			if (h3.parentNode.parentNode != doc) {
+				h3.doc_hide();
+			} else h3.doc_show();
+		}
+	};
+	window.opt_all = function() {
+		for (var li = 0; li < headers.length; li++) headers[li].doc_show();
+	};
+	window.live_post = function() {
+		doc = document.getElementById("doc");
+		headers = doc.getElementsByTagName("header");
+		//
+		for (var i = 0; i < headers.length; i++) h3bind(headers[i]);
+		// Clicks in document expand the related section:
+		var anchors = doc.getElementsByTagName("a");
+		for (var i = 0; i < anchors.length; i++) {
+			var anchor = anchors[i];
+			if (anchor.classList.contains("header")) continue;
+			var href = anchor.getAttribute("href");
+			if (href[0] == "#") {
+				var fn = getHashFunc(href.substr(1));
+				if (!fn) {
+					anchor.classList.add("broken");
+					anchor.title = "(section missing)";
+				} else anchor.addEventListener("click", fn);
+			}
+		}
+		//
+		for (var li = 0; li < headers.length; li++) {
+			var h3 = headers[li];
+			var val = state ? state[h3.id || h3.textContent] : null;
+			if (val == null) val = isLocal || h3.parentNode.parentNode == doc;
+			if (val) h3.doc_show(); else h3.doc_hide();
+		}
+	};
+	window.live_post();
+	//
+	(function() {
+		var hash = document.location.hash;
+		if (hash) {
+			var _hash = hash.substr(1);
+			getHashFunc(_hash)();
+			setTimeout(function() {
+				document.location.hash = hash + " ";
+				setTimeout(function() {
+					document.location.hash = hash;
+				}, 100);
+			}, 100);
+		}
+	})();
+	//
+	doc.setAttribute("ready", "");
+	})();</script>
+</body></html>
