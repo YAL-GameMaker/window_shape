@@ -1,5 +1,6 @@
 /// @author YellowAfterlife
 
+#include <dwmapi.h>
 #include "stdafx.h"
 
 // @dllg:docname window_shape window_shape
@@ -206,6 +207,18 @@ dllg void window_shape_destroy(gml_id_destroy<window_shape> shape) {
 dllx void window_shape_init_raw(void* _hwnd) {
 	hwnd = (HWND)_hwnd;
 }
+
+///
+dllx void window_enable_per_pixel_alpha() {
+	DWM_BLURBEHIND bb = { 0 };
+	bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+	bb.hRgnBlur = CreateRectRgn(0, 0, -1, -1);
+	bb.fEnable = TRUE;
+	DwmEnableBlurBehindWindow(hwnd, &bb);
+	// todo: WM_NCHITTEST?
+}
+
+// todo: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setlayeredwindowattributes
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
 	if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
