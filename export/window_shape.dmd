@@ -26,10 +26,11 @@ window_shape_polygon_mode_winding = 2
     
     If you've ever worked with vector graphics editors, this should sound familiar.
     
-    There is a newer API
+    ~~There is a newer API
     ([`UpdateLayeredWindow`](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-updatelayeredwindow))
     that's pixel-based, but it requires broader changes to how application renders graphics,
-    which I would expect to backfire in a variety of unpredictable ways.
+    which I would expect to backfire in a variety of unpredictable ways.~~  
+    *Update!* 
     
     Some functions consume the inputs, meaning that the underlying native object is destroyed
     and the reference is invalidated - you don't have to call [window_shape_destroy] on them
@@ -241,5 +242,10 @@ window_shape_polygon_mode_winding = 2
     }
     #[window_shape_reset()]() {
         Returns your window to its original, rectangular form.
+    }
+}
+#[Per-pixel opacity](per-pixel) {
+    #[window_enable_per_pixel_alpha()] {
+        
     }
 }

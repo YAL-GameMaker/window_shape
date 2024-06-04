@@ -1,5 +1,25 @@
 draw_set_font(fnt_test);
 draw_set_color(c_white);
+if (transparent) {
+	// Windows expects pre-multiplied alpha
+	var c = #889EC5;
+	var rw = room_width;
+	var rh = room_height;
+	//var ca = mouse_x/rw;
+	//draw_clear_alpha(merge_color(0, c, ca), ca);
+	draw_clear_alpha(0, 0);
+	
+	var a1 = 0.9;
+	var a2 = 0.1;
+	var c1 = merge_color(c_black, c, a1);
+	var c2 = merge_color(c_black, c, a2);
+	draw_primitive_begin(pr_trianglestrip);
+	draw_vertex_color( 0,  0, c1, a1);
+	draw_vertex_color(rw,  0, c1, a1);
+	draw_vertex_color( 0, rh, c2, a2);
+	draw_vertex_color(rw, rh, c2, a2);
+	draw_primitive_end();
+}
 
 var w = window_get_width();
 var h = window_get_height();
@@ -56,7 +76,7 @@ if (testOpt("A familiar shape")) {
         window_shape_operation_diff
     ));
 }
-draw_text(5, 5, text);
+drawText(5, 5, text);
 
 text = "More things:\n";
 key = ord("A");
@@ -141,4 +161,13 @@ if (testOpt("Uh oh")) {
     window_shape_reset();
 }
 
-draw_text(w/2, 5, text);
+if (testOpt(
+	transparent
+	? "Per-pixel alpha enabled"
+	: "Enable per-pixel alpha"
+)) {
+	transparent = true;
+	window_enable_per_pixel_alpha();
+}
+
+drawText(w/2, 5, text);

@@ -1,8 +1,9 @@
-<html lang="en"><head>
+<!DOCTYPE HTML><html lang="en"><head>
 <meta charset="UTF-8">
 <title>window_shape cheat sheet</title>
 <meta name="viewport" content="width=device-width" />
 <meta name="livenode" content="#doc" />
+<meta property="theme-color" content="#FFF037" />
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="en_us" />
 <meta property="og:site_name" content="YellowAfterlife" />
@@ -42,7 +43,9 @@ body {
 	padding-left: 0;
 	margin: 0;
 }
-#doc article > ul, #doc article > ol {
+#doc blockquote { margin: 0.5em 0; padding: 0; }
+#doc article > ul, #doc li > ul,
+#doc article > ol, #doc li > ol {
 	padding-left: 20px;
 }
 #doc article ul li {
@@ -89,9 +92,11 @@ body {
 #doc section.empty > header::before {
 	content: " "; /*"·"*/
 }
-#doc header:hover {
-	border-left-color: #f3f3f3;
-	background: #f3f3f3;
+
+#doc header:hover,
+#doc .sticky-side:hover {
+	border-left-color: #E7E7E7; /* rgba(0, 0, 0, 0.05) */
+	background: rgba(0, 0, 0, 0.048);
 }
 #doc header .ret-arrow {
 	font-weight: normal;
@@ -117,13 +122,43 @@ body {
 	border-bottom: 1px solid #ccc;
 }
 
-#doc article, #doc ul {
+#doc article,
+#doc ul,
+#doc ol,
+#doc blockquote {
 	padding-left: 20px;
 	border-left: 2px solid #f3f3f3;
 }
 #doc article {
 	padding-top: 0.25em;
 	padding-bottom: 0.5em;
+	position: relative;
+}
+#doc .sticky-side {
+	position: absolute;
+	left: -2px;
+	top: 0;
+	bottom: 1px;
+	width: 20px;
+	writing-mode: vertical-rl;
+	font-size: 85%;
+	text-orientation: sideways;
+	/*transform: rotate(0.05deg);*/
+}
+#doc .sticky-side,
+#doc .sticky-side:visited {
+	color: rgba(0, 0, 0, 0.3);
+}
+#doc .sticky-side > span {
+	display: inline-block;
+	position: sticky;
+	left: 0;
+	top: 0;
+	padding: 0.3em 0;
+	max-height: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	white-space: nowrap;
 }
 #doc tt {
 	font-weight: bold;
@@ -167,15 +202,6 @@ body {
 }
 #doc pre a {
 	text-decoration: none;
-}
-#doc pre a.uf {
-	background-color: #f7f0ff;
-}
-#doc pre a.kw {
-	background-color: #f0f7ff;
-}
-#doc pre a.sf, #doc pre a.sv {
-	background-color: #fff3f0;
 }
 #doc pre a:hover {
 	text-decoration: underline;
@@ -225,7 +251,7 @@ body {
 pre.gmlmd .md { color: #7A81A9 } /* #define */
 pre.gmlmd .kw { color: #008; font-weight: bold } /* keyword */
 pre.gmlmd .co { color: #080 } /* comment */
-pre.gmlmd .nu { color: #00f } /* number */
+pre.gmlmd .nu { color: #F03232 } /* number */
 pre.gmlmd .nx { color: #00f } /* hex */
 pre.gmlmd .st { color: #00f } /* string */
 pre.gmlmd .ts { color: #00f } /* template string */
@@ -238,6 +264,16 @@ pre.gmlmd .uf { color: #808 } /* user func */
 pre.gmlmd .uv { color: #000 } /* user var */
 pre.gmlmd .lv { color: #648 } /* local var */
 pre.gmlmd .fd { color: #804 } /* field */
+
+pre.gmlmd a.uf {
+	background-color: #f7f0ff;
+}
+pre.gmlmd a.kw {
+	background-color: #f0f7ff;
+}
+pre.gmlmd a.sf, #doc pre a.sv {
+	background-color: #fff3f0;
+}
 
 #night:checked + .main pre.gmlmd .op { color: #CCCCCC }
 #night:checked + .main pre.gmlmd .co { color: #5B995B }
@@ -288,6 +324,7 @@ pre.gmlmd .fd { color: #804 } /* field */
 }
 #night:checked + .main #doc header,
 #night:checked + .main #doc header:hover,
+#night:checked + .main #doc .sticky-side:hover,
 #night:checked + .main #doc article,
 #night:checked + .main #doc section,
 #night:checked + .main #doc section + p,
@@ -300,6 +337,7 @@ pre.gmlmd .fd { color: #804 } /* field */
 	border-color: rgba(205,225,255,0.1);
 }
 #night:checked + .main #doc header:hover,
+#night:checked + .main #doc .sticky-side:hover,
 #night:checked + .main #doc .asset:hover {
 	background: rgba(205,225,255,0.1);
 }
@@ -315,6 +353,10 @@ pre.gmlmd .fd { color: #804 } /* field */
 	background-color: #000;
 	border-color: #5b7c9f;
 	color: white;
+}
+#night:checked + .main #doc .sticky-side,
+#night:checked + .main #doc .sticky-side:visited {
+	color: rgba(255, 255, 255, 0.3);
 }</style>
 <style type="text/css" id="print_css">@media print {
 	.main { background-color: transparent }
@@ -348,32 +390,40 @@ pre.gmlmd .fd { color: #804 } /* field */
 	var night = document.getElementById("night");
 	var path = "docmd night mode";
 	var ls = window.localStorage;
+	var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 	if (ls) {
-		night.checked = ls.getItem(path) == "true";
+		var item = ls.getItem(path);
+		night.checked = item ? item == "true" : dark;
 		night.onchange = function(_) {
 			ls.setItem(path, "" + night.checked);
 		};
-	}
+	} else night.checked = dark;
 })();</script>
 <main class="page">
 <section class="intro">This is a "cheat sheet" for "window_shape" extension by YellowAfterlife.<br/>
-The extension can be found on <a href="https://yellowafterlife.itch.io/gamemaker-window-shape">itch.io</a>.</section><section class="display-controls">
+The extension can be found on <a href="https://yellowafterlife.itch.io/gamemaker-window-shape">itch.io</a>.</section>
+<section class="display-controls">
 Click on sections to expand/collapse them.<br>Quick display controls:
 <a href="javascript:void(0)" onclick="opt_none(); return false">Categories</a>
 &middot; <a href="javascript:void(0)" onclick="opt_list(); return false">Sections</a>
 &middot; <a href="javascript:void(0)" onclick="opt_all(); return false">Everything</a>
 &middot; <a href="javascript:void(0)"><label for="night">Toggle night mode</label></a><br/>
 </section><section id="doc">
-<!--<doc--><p>
+<!--<doc--><p><p>
+
 <style>
-.main {
-	background-color: #889EC5;
-}
-#night:checked + .main {
-	background-color: #405070;
-}
+.main { background-color: #899FC6 }
+.page { box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) }
+#night:checked + .main { background-color: #405070 }
+#night:checked + .main .page { background-color: #1A202D }
 </style>
-<section><header id="Concepts"><a href="#Concepts" title="(permalink)">Concepts</a></header><article><p>
+
+
+
+
+
+
+</p><section><header id="Concepts"><a href="#Concepts" title="(permalink)">Concepts</a></header><article><p>
     This extension uses
     <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn"><code>SetWindowRgn</code></a>,
     which uses <a href="https://learn.microsoft.com/en-us/windows/win32/gdi/regions">GDI regions</a>.
@@ -385,10 +435,11 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     </p><p>
     If you've ever worked with vector graphics editors, this should sound familiar.
     </p><p>
-    There is a newer API
+    <s>There is a newer API
     (<a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-updatelayeredwindow"><code>UpdateLayeredWindow</code></a>)
     that's pixel-based, but it requires broader changes to how application renders graphics,
-    which I would expect to backfire in a variety of unpredictable ways.
+    which I would expect to backfire in a variety of unpredictable ways.</s>  <br/>
+    <strong>Update!</strong> 
     </p><p>
     Some functions consume the inputs, meaning that the underlying native object is destroyed
     and the reference is invalidated - you don't have to call <a href="#window_shape_destroy">window_shape_destroy</a> on them
@@ -414,7 +465,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     Initializes the extension.
     </p><p>
     Should be ran before doing anything else.
-</p></article></section><section><header id="window_shape_create"><a href="#window_shape_create" title="(permalink)">Creating shapes</a></header><article><p>
+</p></article></section><section><header id="window_shape_create"><a href="#window_shape_create" title="(permalink)">Creating shapes</a></header><article><a class="sticky-side" href="#window_shape_create" title="Creating shapes"><span>Creating shapes</span></a><p>
     Coordinates are in pixels relative to window's top-left corner.
     </p><section><header id="window_shape_create_empty"><a href="#window_shape_create_empty" title="(permalink)">window_shape_create_empty()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Creates an empty shape (formally a zero-size rectangle).
@@ -478,7 +529,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
             A convenience wrapper for above, creates a shape from pixels in a surface.
         </p></article></section><section><header id="window_shape_create_rectangles_from_sprite"><a href="#window_shape_create_rectangles_from_sprite" title="(permalink)">window_shape_create_rectangles_from_sprite(surface, tolerance)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
             A convenience wrapper for above, creates a shape from pixels in a sprite.
-        </p></article></section></article></section></article></section><section><header id="window_shape_manip"><a href="#window_shape_manip" title="(permalink)">Shape manipulations</a></header><article><section><header id="window_shape_duplicate"><a href="#window_shape_duplicate" title="(permalink)">window_shape_duplicate(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        </p></article></section></article></section></article></section><section><header id="window_shape_manip"><a href="#window_shape_manip" title="(permalink)">Shape manipulations</a></header><article><a class="sticky-side" href="#window_shape_manip" title="Shape manipulations"><span>Shape manipulations</span></a><section><header id="window_shape_duplicate"><a href="#window_shape_duplicate" title="(permalink)">window_shape_duplicate(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Creates an independent copy of the given shape.
     </p></article></section><section><header id="window_shape_destroy"><a href="#window_shape_destroy" title="(permalink)">window_shape_destroy(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Destroys the given shape.
@@ -501,7 +552,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     </p><section><header id="window_shape_combine"><a href="#window_shape_combine" title="(permalink)">window_shape_combine(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Combines the two shapes into a new one and returns it.
         </p><p>
-        <b>The inputs are consumed in the process.</b>
+        <strong>The inputs are consumed in the process.</strong>
         </p><p>
         <code>op</code> can be one of the following: </p><ul>
         <li> <code>window_shape_operation_and</code><br/>
@@ -531,7 +582,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     </p></article></section><section><header id="window_shape_concat"><a href="#window_shape_concat" title="(permalink)">window_shape_concat(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Like <code>window_shape_combine</code>, but the result is kept in <code>shape1</code> instead of creating a new one.
         </p><p>
-        <b>The second shape is consumed in the process.</b>
+        <strong>The second shape is consumed in the process.</strong>
         </p><p>
         Returns whether successful.
     </p></article></section><section><header id="window_shape_concat_nc"><a href="#window_shape_concat_nc" title="(permalink)">window_shape_concat_nc(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
@@ -547,10 +598,10 @@ Click on sections to expand/collapse them.<br>Quick display controls:
         (which would only update while the mouse is over the window).
     </p></article></section><section><header id="window_shape_contains_rectangle"><a href="#window_shape_contains_rectangle" title="(permalink)">window_shape_contains_rectangle(shape, x1, y1, x2, y2)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Contains whether a rectangle is within a shape.
-    </p></article></section></article></section><section><header id="window_shape_set_reset"><a href="#window_shape_set_reset" title="(permalink)">Setting and resetting</a></header><article><section><header id="window_shape_set"><a href="#window_shape_set" title="(permalink)">window_shape_set(shape)</a></header><article><p>
+    </p></article></section></article></section><section><header id="window_shape_set_reset"><a href="#window_shape_set_reset" title="(permalink)">Setting and resetting</a></header><article><a class="sticky-side" href="#window_shape_set_reset" title="Setting and resetting"><span>Setting and resetting</span></a><section><header id="window_shape_set"><a href="#window_shape_set" title="(permalink)">window_shape_set(shape)</a></header><article><p>
         Applies the given shape to the game window.
         </p><p>
-        <b>This function consumes the shape.</b>
+        <strong>This function consumes the shape.</strong>
         </p><p>
         That isn't my idea - the WinAPI function
         <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn#remarks">has it</a>
@@ -561,7 +612,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
         (by giving WinAPI a copy rather than the original).
     </p></article></section><section><header id="window_shape_reset"><a href="#window_shape_reset" title="(permalink)">window_shape_reset()</a></header><article><p>
         Returns your window to its original, rectangular form.
-    </p></article></section></article></section></p><!--doc>-->
+    </p></article></section></article></section><section class="empty"><header id="per-pixel"><a href="#per-pixel" title="(permalink)">Per-pixel opacity</a></header><article><a class="sticky-side" href="#per-pixel" title="Per-pixel opacity"><span>Per-pixel opacity</span></a><section><header>window_enable_per_pixel_alpha()</header></section></article></section></p><!--doc>-->
 </section></main></div>
 <script type="text/javascript">(function() {
 	var doc, headers;

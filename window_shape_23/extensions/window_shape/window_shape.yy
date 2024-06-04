@@ -19,101 +19,102 @@
   "extensionVersion": "1.0.0",
   "files": [
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_polygon_mode_alternate","hidden":false,"value":"1",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_polygon_mode_winding","hidden":false,"value":"2",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_copy","hidden":false,"value":"5",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_diff","hidden":false,"value":"4",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_and","hidden":false,"value":"1",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_or","hidden":false,"value":"2",},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_xor","hidden":false,"value":"3",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_polygon_mode_alternate","hidden":false,"tags":[],"value":"1",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_polygon_mode_winding","hidden":false,"tags":[],"value":"2",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_copy","hidden":false,"tags":[],"value":"5",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_diff","hidden":false,"tags":[],"value":"4",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_and","hidden":false,"tags":[],"value":"1",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_or","hidden":false,"tags":[],"value":"2",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_shape_operation_xor","hidden":false,"tags":[],"value":"3",},
       ],"copyToTargets":9223372036854775807,"filename":"window_shape.dll","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_empty_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_empty_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_rectangle_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_rectangle_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_round_rectangle_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_round_rectangle_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_ellipse_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_ellipse_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_circle_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_circle_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_polygon_from_buffer_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_polygon_from_buffer_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_polygon_from_path_data_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_polygon_from_path_data_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_rectangles_from_rgba_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_create_rectangles_from_rgba_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_duplicate_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_duplicate_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_shift_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_shift_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_transform_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_transform_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_combine_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_combine_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_combine_nc_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_combine_nc_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_concat_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_concat_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_concat_nc_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_concat_nc_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_contains_point_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_contains_point_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_contains_rectangle_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_contains_rectangle_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_set_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_set_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_set_nc_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_set_nc_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_reset_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_reset_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_destroy_raw","argCount":2,"args":[
             1,
-            1,
+            2,
           ],"documentation":"","externalName":"window_shape_destroy_raw","help":"","hidden":true,"kind":11,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_init_raw","argCount":1,"args":[
             1,
           ],"documentation":"","externalName":"window_shape_init_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_enable_per_pixel_alpha","argCount":0,"args":[],"documentation":"","externalName":"window_enable_per_pixel_alpha","help":"window_enable_per_pixel_alpha()","hidden":false,"kind":1,"returnType":2,},
       ],"init":"","kind":1,"order":[
         {"name":"window_shape_create_empty_raw","path":"extensions/window_shape/window_shape.yy",},
         {"name":"window_shape_create_rectangle_raw","path":"extensions/window_shape/window_shape.yy",},
@@ -139,7 +140,7 @@
         {"name":"window_shape_init_raw","path":"extensions/window_shape/window_shape.yy",},
       ],"origname":"extensions\\window_shape.dll","ProxyFiles":[
         {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"window_shape_x64.dll","TargetMask":6,},
-      ],"uncompress":false,"usesRunnerInterface":false,},
+      ],"tags":[],"uncompress":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":9223372036854775807,"filename":"window_shape.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_init","argCount":0,"args":[],"documentation":"","externalName":"window_shape_init","help":"window_shape_init()","hidden":false,"kind":2,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_prepare_buffer","argCount":1,"args":[
@@ -170,7 +171,7 @@
         {"name":"window_shape_create_polygon_from_path","path":"extensions/window_shape/window_shape.yy",},
         {"name":"window_shape_create_rectangles_from_surface","path":"extensions/window_shape/window_shape.yy",},
         {"name":"window_shape_create_rectangles_from_sprite","path":"extensions/window_shape/window_shape.yy",},
-      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"tags":[],"uncompress":false,},
     {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"autogen.gml","final":"","functions":[
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_empty","argCount":0,"args":[],"documentation":"","externalName":"window_shape_create_empty","help":"window_shape_create_empty()->window_shape","hidden":false,"kind":2,"returnType":2,},
         {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_shape_create_rectangle","argCount":4,"args":[
@@ -294,7 +295,7 @@
         {"name":"window_shape_set_nc","path":"extensions/window_shape/window_shape.yy",},
         {"name":"window_shape_reset","path":"extensions/window_shape/window_shape.yy",},
         {"name":"window_shape_destroy","path":"extensions/window_shape/window_shape.yy",},
-      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"tags":[],"uncompress":false,},
   ],
   "gradleinject": "",
   "hasConvertedCodeInjection": true,
