@@ -31,4 +31,16 @@ cmd /C 7z a window_shape-for-GMS2.3+.zip *
 move /Y window_shape-for-GMS2.3+.zip "../window_shape (for GMS2.3 and GM2022+).yymps"
 cd ..
 
+del /Q window_shape_demo.yyz
+cd ..\window_shape_23
+cmd /C 7z a ..\export\window_shape_23.zip
+cd ..\export
+move window_shape_23.zip window_shape_demo.yyz
+
+del /Q desktop_friend.yyz
+cd ..\desktop_friend
+cmd /C 7z a ..\export\desktop_friend.zip
+cd ..\export
+move desktop_friend.zip desktop_friend.yyz
+
 pause

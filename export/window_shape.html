@@ -1,9 +1,8 @@
-<!DOCTYPE HTML><html lang="en"><head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <title>window_shape cheat sheet</title>
 <meta name="viewport" content="width=device-width" />
 <meta name="livenode" content="#doc" />
-<meta property="theme-color" content="#FFF037" />
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="en_us" />
 <meta property="og:site_name" content="YellowAfterlife" />
@@ -43,9 +42,7 @@ body {
 	padding-left: 0;
 	margin: 0;
 }
-#doc blockquote { margin: 0.5em 0; padding: 0; }
-#doc article > ul, #doc li > ul,
-#doc article > ol, #doc li > ol {
+#doc article > ul, #doc article > ol {
 	padding-left: 20px;
 }
 #doc article ul li {
@@ -92,11 +89,9 @@ body {
 #doc section.empty > header::before {
 	content: " "; /*"·"*/
 }
-
-#doc header:hover,
-#doc .sticky-side:hover {
-	border-left-color: #E7E7E7; /* rgba(0, 0, 0, 0.05) */
-	background: rgba(0, 0, 0, 0.048);
+#doc header:hover {
+	border-left-color: #f3f3f3;
+	background: #f3f3f3;
 }
 #doc header .ret-arrow {
 	font-weight: normal;
@@ -122,43 +117,13 @@ body {
 	border-bottom: 1px solid #ccc;
 }
 
-#doc article,
-#doc ul,
-#doc ol,
-#doc blockquote {
+#doc article, #doc ul {
 	padding-left: 20px;
 	border-left: 2px solid #f3f3f3;
 }
 #doc article {
 	padding-top: 0.25em;
 	padding-bottom: 0.5em;
-	position: relative;
-}
-#doc .sticky-side {
-	position: absolute;
-	left: -2px;
-	top: 0;
-	bottom: 1px;
-	width: 20px;
-	writing-mode: vertical-rl;
-	font-size: 85%;
-	text-orientation: sideways;
-	/*transform: rotate(0.05deg);*/
-}
-#doc .sticky-side,
-#doc .sticky-side:visited {
-	color: rgba(0, 0, 0, 0.3);
-}
-#doc .sticky-side > span {
-	display: inline-block;
-	position: sticky;
-	left: 0;
-	top: 0;
-	padding: 0.3em 0;
-	max-height: 100%;
-	box-sizing: border-box;
-	overflow: hidden;
-	white-space: nowrap;
 }
 #doc tt {
 	font-weight: bold;
@@ -202,6 +167,15 @@ body {
 }
 #doc pre a {
 	text-decoration: none;
+}
+#doc pre a.uf {
+	background-color: #f7f0ff;
+}
+#doc pre a.kw {
+	background-color: #f0f7ff;
+}
+#doc pre a.sf, #doc pre a.sv {
+	background-color: #fff3f0;
 }
 #doc pre a:hover {
 	text-decoration: underline;
@@ -251,7 +225,7 @@ body {
 pre.gmlmd .md { color: #7A81A9 } /* #define */
 pre.gmlmd .kw { color: #008; font-weight: bold } /* keyword */
 pre.gmlmd .co { color: #080 } /* comment */
-pre.gmlmd .nu { color: #F03232 } /* number */
+pre.gmlmd .nu { color: #00f } /* number */
 pre.gmlmd .nx { color: #00f } /* hex */
 pre.gmlmd .st { color: #00f } /* string */
 pre.gmlmd .ts { color: #00f } /* template string */
@@ -264,16 +238,6 @@ pre.gmlmd .uf { color: #808 } /* user func */
 pre.gmlmd .uv { color: #000 } /* user var */
 pre.gmlmd .lv { color: #648 } /* local var */
 pre.gmlmd .fd { color: #804 } /* field */
-
-pre.gmlmd a.uf {
-	background-color: #f7f0ff;
-}
-pre.gmlmd a.kw {
-	background-color: #f0f7ff;
-}
-pre.gmlmd a.sf, #doc pre a.sv {
-	background-color: #fff3f0;
-}
 
 #night:checked + .main pre.gmlmd .op { color: #CCCCCC }
 #night:checked + .main pre.gmlmd .co { color: #5B995B }
@@ -324,7 +288,6 @@ pre.gmlmd a.sf, #doc pre a.sv {
 }
 #night:checked + .main #doc header,
 #night:checked + .main #doc header:hover,
-#night:checked + .main #doc .sticky-side:hover,
 #night:checked + .main #doc article,
 #night:checked + .main #doc section,
 #night:checked + .main #doc section + p,
@@ -337,7 +300,6 @@ pre.gmlmd a.sf, #doc pre a.sv {
 	border-color: rgba(205,225,255,0.1);
 }
 #night:checked + .main #doc header:hover,
-#night:checked + .main #doc .sticky-side:hover,
 #night:checked + .main #doc .asset:hover {
 	background: rgba(205,225,255,0.1);
 }
@@ -353,10 +315,6 @@ pre.gmlmd a.sf, #doc pre a.sv {
 	background-color: #000;
 	border-color: #5b7c9f;
 	color: white;
-}
-#night:checked + .main #doc .sticky-side,
-#night:checked + .main #doc .sticky-side:visited {
-	color: rgba(255, 255, 255, 0.3);
 }</style>
 <style type="text/css" id="print_css">@media print {
 	.main { background-color: transparent }
@@ -390,40 +348,32 @@ pre.gmlmd a.sf, #doc pre a.sv {
 	var night = document.getElementById("night");
 	var path = "docmd night mode";
 	var ls = window.localStorage;
-	var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 	if (ls) {
-		var item = ls.getItem(path);
-		night.checked = item ? item == "true" : dark;
+		night.checked = ls.getItem(path) == "true";
 		night.onchange = function(_) {
 			ls.setItem(path, "" + night.checked);
 		};
-	} else night.checked = dark;
+	}
 })();</script>
 <main class="page">
 <section class="intro">This is a "cheat sheet" for "window_shape" extension by YellowAfterlife.<br/>
-The extension can be found on <a href="https://yellowafterlife.itch.io/gamemaker-window-shape">itch.io</a>.</section>
-<section class="display-controls">
+The extension can be found on <a href="https://yellowafterlife.itch.io/gamemaker-window-shape">itch.io</a>.</section><section class="display-controls">
 Click on sections to expand/collapse them.<br>Quick display controls:
 <a href="javascript:void(0)" onclick="opt_none(); return false">Categories</a>
 &middot; <a href="javascript:void(0)" onclick="opt_list(); return false">Sections</a>
 &middot; <a href="javascript:void(0)" onclick="opt_all(); return false">Everything</a>
 &middot; <a href="javascript:void(0)"><label for="night">Toggle night mode</label></a><br/>
 </section><section id="doc">
-<!--<doc--><p><p>
-
+<!--<doc--><p>
 <style>
-.main { background-color: #899FC6 }
-.page { box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) }
-#night:checked + .main { background-color: #405070 }
-#night:checked + .main .page { background-color: #1A202D }
+.main {
+	background-color: #889EC5;
+}
+#night:checked + .main {
+	background-color: #405070;
+}
 </style>
-
-
-
-
-
-
-</p><section><header id="Concepts"><a href="#Concepts" title="(permalink)">Concepts</a></header><article><p>
+<section><header id="Concepts"><a href="#Concepts" title="(permalink)">Concepts</a></header><article><p>
     This extension uses
     <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn"><code>SetWindowRgn</code></a>,
     which uses <a href="https://learn.microsoft.com/en-us/windows/win32/gdi/regions">GDI regions</a>.
@@ -439,7 +389,8 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     (<a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-updatelayeredwindow"><code>UpdateLayeredWindow</code></a>)
     that's pixel-based, but it requires broader changes to how application renders graphics,
     which I would expect to backfire in a variety of unpredictable ways.</s>  <br/>
-    <strong>Update!</strong> 
+    <b>Update!</b> I found <a href="#window_enable_per_pixel_alpha">a workaround</a> with a relatively small number
+    of caveats.
     </p><p>
     Some functions consume the inputs, meaning that the underlying native object is destroyed
     and the reference is invalidated - you don't have to call <a href="#window_shape_destroy">window_shape_destroy</a> on them
@@ -465,7 +416,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     Initializes the extension.
     </p><p>
     Should be ran before doing anything else.
-</p></article></section><section><header id="window_shape_create"><a href="#window_shape_create" title="(permalink)">Creating shapes</a></header><article><a class="sticky-side" href="#window_shape_create" title="Creating shapes"><span>Creating shapes</span></a><p>
+</p></article></section><section><header id="window_shape_create"><a href="#window_shape_create" title="(permalink)">Creating shapes</a></header><article><p>
     Coordinates are in pixels relative to window's top-left corner.
     </p><section><header id="window_shape_create_empty"><a href="#window_shape_create_empty" title="(permalink)">window_shape_create_empty()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Creates an empty shape (formally a zero-size rectangle).
@@ -496,9 +447,9 @@ Click on sections to expand/collapse them.<br>Quick display controls:
 <span class="kw">var</span> <span class="lv">angle</span> <span class="op">=</span> <span class="nu">30</span><span class="op">;</span>
 <span class="kw">var</span> <span class="lv">mode</span> <span class="op">=</span> <span class="sv">window_shape_polygon_mode_alternate</span><span class="op">;</span>
 <span class="kw">repeat</span> <span class="op">(</span><span class="nu">5</span><span class="op">)</span> <span class="cb">{</span>
-    <span class="uf">array_push</span><span class="op">(</span><span class="lv">arr</span><span class="op">,</span>
-        <span class="nu">200</span> <span class="op">+</span> <span class="uf">lengthdir_x</span><span class="op">(</span><span class="nu">200</span><span class="op">,</span> <span class="lv">angle</span><span class="op">)</span><span class="op">,</span>
-        <span class="nu">200</span> <span class="op">+</span> <span class="uf">lengthdir_y</span><span class="op">(</span><span class="nu">200</span><span class="op">,</span> <span class="lv">angle</span><span class="op">)</span><span class="op">,</span>
+    <span class="sf">array_push</span><span class="op">(</span><span class="lv">arr</span><span class="op">,</span>
+        <span class="nu">200</span> <span class="op">+</span> <span class="sf">lengthdir_x</span><span class="op">(</span><span class="nu">200</span><span class="op">,</span> <span class="lv">angle</span><span class="op">)</span><span class="op">,</span>
+        <span class="nu">200</span> <span class="op">+</span> <span class="sf">lengthdir_y</span><span class="op">(</span><span class="nu">200</span><span class="op">,</span> <span class="lv">angle</span><span class="op">)</span><span class="op">,</span>
     <span class="op">)</span><span class="op">;</span>
     <span class="lv">angle</span> <span class="op">+=</span> <span class="nu">360</span><span class="op">/</span><span class="nu">5</span><span class="op">*</span><span class="nu">2</span><span class="op">;</span>
 <span class="cb">}</span>
@@ -529,7 +480,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
             A convenience wrapper for above, creates a shape from pixels in a surface.
         </p></article></section><section><header id="window_shape_create_rectangles_from_sprite"><a href="#window_shape_create_rectangles_from_sprite" title="(permalink)">window_shape_create_rectangles_from_sprite(surface, tolerance)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
             A convenience wrapper for above, creates a shape from pixels in a sprite.
-        </p></article></section></article></section></article></section><section><header id="window_shape_manip"><a href="#window_shape_manip" title="(permalink)">Shape manipulations</a></header><article><a class="sticky-side" href="#window_shape_manip" title="Shape manipulations"><span>Shape manipulations</span></a><section><header id="window_shape_duplicate"><a href="#window_shape_duplicate" title="(permalink)">window_shape_duplicate(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        </p></article></section></article></section></article></section><section><header id="window_shape_manip"><a href="#window_shape_manip" title="(permalink)">Shape manipulations</a></header><article><section><header id="window_shape_duplicate"><a href="#window_shape_duplicate" title="(permalink)">window_shape_duplicate(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Creates an independent copy of the given shape.
     </p></article></section><section><header id="window_shape_destroy"><a href="#window_shape_destroy" title="(permalink)">window_shape_destroy(shape)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Destroys the given shape.
@@ -552,7 +503,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     </p><section><header id="window_shape_combine"><a href="#window_shape_combine" title="(permalink)">window_shape_combine(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Combines the two shapes into a new one and returns it.
         </p><p>
-        <strong>The inputs are consumed in the process.</strong>
+        <b>The inputs are consumed in the process.</b>
         </p><p>
         <code>op</code> can be one of the following: </p><ul>
         <li> <code>window_shape_operation_and</code><br/>
@@ -582,7 +533,7 @@ Click on sections to expand/collapse them.<br>Quick display controls:
     </p></article></section><section><header id="window_shape_concat"><a href="#window_shape_concat" title="(permalink)">window_shape_concat(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Like <code>window_shape_combine</code>, but the result is kept in <code>shape1</code> instead of creating a new one.
         </p><p>
-        <strong>The second shape is consumed in the process.</strong>
+        <b>The second shape is consumed in the process.</b>
         </p><p>
         Returns whether successful.
     </p></article></section><section><header id="window_shape_concat_nc"><a href="#window_shape_concat_nc" title="(permalink)">window_shape_concat_nc(shape1, shape2, op)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
@@ -598,10 +549,10 @@ Click on sections to expand/collapse them.<br>Quick display controls:
         (which would only update while the mouse is over the window).
     </p></article></section><section><header id="window_shape_contains_rectangle"><a href="#window_shape_contains_rectangle" title="(permalink)">window_shape_contains_rectangle(shape, x1, y1, x2, y2)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
         Contains whether a rectangle is within a shape.
-    </p></article></section></article></section><section><header id="window_shape_set_reset"><a href="#window_shape_set_reset" title="(permalink)">Setting and resetting</a></header><article><a class="sticky-side" href="#window_shape_set_reset" title="Setting and resetting"><span>Setting and resetting</span></a><section><header id="window_shape_set"><a href="#window_shape_set" title="(permalink)">window_shape_set(shape)</a></header><article><p>
+    </p></article></section></article></section><section><header id="window_shape_set_reset"><a href="#window_shape_set_reset" title="(permalink)">Setting and resetting</a></header><article><section><header id="window_shape_set"><a href="#window_shape_set" title="(permalink)">window_shape_set(shape)</a></header><article><p>
         Applies the given shape to the game window.
         </p><p>
-        <strong>This function consumes the shape.</strong>
+        <b>This function consumes the shape.</b>
         </p><p>
         That isn't my idea - the WinAPI function
         <a href="https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowrgn#remarks">has it</a>
@@ -612,7 +563,82 @@ Click on sections to expand/collapse them.<br>Quick display controls:
         (by giving WinAPI a copy rather than the original).
     </p></article></section><section><header id="window_shape_reset"><a href="#window_shape_reset" title="(permalink)">window_shape_reset()</a></header><article><p>
         Returns your window to its original, rectangular form.
-    </p></article></section></article></section><section class="empty"><header id="per-pixel"><a href="#per-pixel" title="(permalink)">Per-pixel opacity</a></header><article><a class="sticky-side" href="#per-pixel" title="Per-pixel opacity"><span>Per-pixel opacity</span></a><section><header>window_enable_per_pixel_alpha()</header></section></article></section></p><!--doc>-->
+    </p></article></section></article></section><section><header id="window_alpha"><a href="#window_alpha" title="(permalink)">Alpha</a></header><article><p>
+    This is a simple multiplier that applies over any other window shape manipulations.
+    </p><section><header id="window_set_alpha"><a href="#window_set_alpha" title="(permalink)">window_set_alpha(alpha)</a></header><article><p>
+        Changes the game window's opacity.
+        </p><p>
+        <code>alpha</code> should be in 0 .. 1 range.
+    </p></article></section><section><header>window_get_alpha()&#8203;<span class="ret-arrow">&#10140;</span></header><article><p>
+        Returns the game window's current opacity.
+    </p></article></section></article></section><section><header id="window_chromakey"><a href="#window_chromakey" title="(permalink)">Chromakey</a></header><article><p>
+    This can similarly be used with other shape modifiers.
+    </p><section><header id="window_set_chromakey"><a href="#window_set_chromakey" title="(permalink)">window_set_chromakey(color)</a></header><article><p>
+        Changes the game window's chromakey color.
+        </p><p>
+        Pixels that <i>fully match</i> this color will be see-through and click-through.
+        </p><p>
+        Pass <code>-1</code> instead of the color to disable chromakey.
+    </p></article></section><section><header id="window_get_chromakey"><a href="#window_get_chromakey" title="(permalink)">window_get_chromakey()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+        Returns the game window's chromakey color (<code>-1</code> if disabled).
+    </p></article></section></article></section><section><header id="per-pixel"><a href="#per-pixel" title="(permalink)">Per-pixel alpha</a></header><article><section><header id="window_enable_per_pixel_alpha"><a href="#window_enable_per_pixel_alpha" title="(permalink)">window_enable_per_pixel_alpha()</a></header><article><p>
+        This function calls
+        <a href="https://learn.microsoft.com/en-us/windows/win32/api/dwmapi/nf-dwmapi-dwmenableblurbehindwindow">DwmEnableBlurBehindWindow</a>
+        for a zero-sized region.
+        </p><p>
+        Doing so also happens to enable partial transparency support for the contents of the window
+        ("The alpha values in the window are honored").
+        </p><p>
+        For example, if you did
+        </p><pre class="gmlmd">
+<span class="sf">draw_clear_alpha</span><span class="op">(</span><span class="sv">c_black</span><span class="op">,</span> <span class="nu">0</span><span class="op">)</span><span class="op">;</span>
+</pre><p>
+        in a Draw event of the only instance in a room, your window would look like an empty frame.
+        </p><p>
+        For a proper setup, make sure that
+        "Clear Display Buffer",
+        "Enable Viewports" (with at least one view set up),
+        and "Clear Viewport Background"
+        are enabled for the room;
+        see <code>desktop_friend</code> project for a slightly more sophisticated example.
+        </p><p>
+        Now let's talk about the conditions and caveats:
+        </p><section><header>Premultiplied alpha</header><article><p>
+            Windows expects the window pixels to have premultiplied alpha.
+            </p><p>
+            In short, instead of just <code>color</code>, the pixels should be colored with
+            </p><pre class="gmlmd">
+<span class="sf">merge_color</span><span class="op">(</span><span class="sv">c_black</span><span class="op">,</span> <span class="sv">color</span><span class="op">,</span> <span class="uv">alpha</span><span class="op">)</span>
+</pre><p>
+            For sprites, all recent GameMaker versions have a "Premultiply alpha" checkbox
+            in the Texture Settings;
+            </p><p>
+            For text and primitives, you'll need to use the above formula;
+            </p><p>
+            For mixing multiple semi-transparent images together, see the classic
+            GameMaker surface problems and solutions.
+            </p><p>
+            If you don't use pre-multiplied alpha, your window will still work,
+            but the semi-transparent bright portions will appear lighter than they should be.
+        </p></article></section><section><header>Hit testing</header><article><p>
+            According to Windows, just because a pixel is now almost or completely transparent,
+            that doesn't mean that you can't click it!
+            </p><p>
+            You can use the extension's other functions (be it shapes or chromakey)
+            to narrow down the window's shape, or use the
+            <a href="https://yal.cc/docs/gm/window_commands/#window_set_clickthrough">window_set_clickthrough</a>
+            function from my free
+            <a href="https://yellowafterlife.itch.io/gamemaker-window-commands">Window Commands</a>
+            extension to make the window clickable/un-clickable
+            based on where the cursor is.
+        </p></article></section><section><header>One-way ticket</header><article><p>
+            The function has been around since Windows 7,
+            yet it doesn't seem like you can go back to an opaque window
+            once you have called it - even if you pass <code>dwFlags</code> of <code>0</code>.
+            </p><p>
+            You can "top-up" the opacity of the window contents by drawing a black rectangle
+            with <code>bm_add</code> blend mode or any rectangle with <code>gpu_set_colourwriteenable</code>
+            (or <code>draw_set_colour_write_enable</code> for GMS1) of <code>(0, 0, 0, 1)</code>.</p></article></section></article></section></article></section></p><!--doc>-->
 </section></main></div>
 <script type="text/javascript">(function() {
 	var doc, headers;

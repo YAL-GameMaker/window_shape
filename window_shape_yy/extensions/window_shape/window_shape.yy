@@ -99,7 +99,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_empty_raw",
                     "help": "",
@@ -115,7 +115,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_rectangle_raw",
                     "help": "",
@@ -131,7 +131,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_round_rectangle_raw",
                     "help": "",
@@ -147,7 +147,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_ellipse_raw",
                     "help": "",
@@ -163,7 +163,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_circle_raw",
                     "help": "",
@@ -179,7 +179,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_polygon_from_buffer_raw",
                     "help": "",
@@ -195,7 +195,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_polygon_from_path_data_raw",
                     "help": "",
@@ -211,7 +211,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_create_rectangles_from_rgba_raw",
                     "help": "",
@@ -227,7 +227,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_duplicate_raw",
                     "help": "",
@@ -243,7 +243,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_shift_raw",
                     "help": "",
@@ -259,7 +259,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_transform_raw",
                     "help": "",
@@ -275,7 +275,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_combine_raw",
                     "help": "",
@@ -291,7 +291,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_combine_nc_raw",
                     "help": "",
@@ -307,7 +307,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_concat_raw",
                     "help": "",
@@ -323,7 +323,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_concat_nc_raw",
                     "help": "",
@@ -339,7 +339,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_contains_point_raw",
                     "help": "",
@@ -355,7 +355,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_contains_rectangle_raw",
                     "help": "",
@@ -371,7 +371,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_set_raw",
                     "help": "",
@@ -387,7 +387,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_set_nc_raw",
                     "help": "",
@@ -403,7 +403,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_reset_raw",
                     "help": "",
@@ -419,7 +419,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        2
+                        1
                     ],
                     "externalName": "window_shape_destroy_raw",
                     "help": "",
@@ -456,6 +456,66 @@
                     "hidden": false,
                     "kind": 1,
                     "name": "window_enable_per_pixel_alpha",
+                    "returnType": 2
+                },
+                {
+                    "id": "959efd71-1974-cb81-4010-d03959e2b1b5",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_get_alpha",
+                    "help": "window_get_alpha()",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "window_get_alpha",
+                    "returnType": 2
+                },
+                {
+                    "id": "69796422-0806-d36b-173d-8f3b028e4494",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 1,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "window_set_alpha",
+                    "help": "window_set_alpha(alpha)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "window_set_alpha",
+                    "returnType": 2
+                },
+                {
+                    "id": "c0e112d6-d048-f2b6-b64a-80ac3f3d9f62",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_get_chromakey",
+                    "help": "window_get_chromakey()",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "window_get_chromakey",
+                    "returnType": 2
+                },
+                {
+                    "id": "5ba5da0b-87a8-4c3c-6fb6-68bf659ba8b8",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 1,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "window_set_chromakey",
+                    "help": "window_set_chromakey(color)",
+                    "hidden": false,
+                    "kind": 1,
+                    "name": "window_set_chromakey",
                     "returnType": 2
                 }
             ],

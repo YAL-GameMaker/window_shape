@@ -28,32 +28,32 @@ var cx = w / 2;
 var cy = h / 2;
 text = "Try things:\n";
 key = ord("0");
-if (testOpt("Exit")) game_end();
-if (testOpt("Default shape")) {
+if (testOptShape("Exit")) game_end();
+if (testOptShape("Default shape")) {
     window_shape_reset();
 }
-if (testOpt("An ellipse")) {
+if (testOptShape("An ellipse")) {
     window_shape_set(window_shape_create_ellipse(0, 0, w, h));
 }
-if (testOpt("Two ellipses?")) {
+if (testOptShape("Two ellipses?")) {
     window_shape_set(window_shape_combine(
         window_shape_create_ellipse(0, 0, w * 0.4, h),
         window_shape_create_ellipse(w * 0.6, 0, w, h),
         window_shape_operation_or
     ));
 }
-if (testOpt("A donut?")) {
+if (testOptShape("A donut?")) {
     window_shape_set(window_shape_combine(
         window_shape_create_circle(cx, cy, r),
         window_shape_create_circle(cx, cy, r * 0.4),
         window_shape_operation_diff
     ));
 }
-if (testOpt("A smooth shape")) {
+if (testOptShape("A smooth shape")) {
     window_shape_set(window_shape_create_polygon_from_path(
 		pt_smooth, window_shape_polygon_mode_winding));
 }
-if (testOpt("An engine-specific shape")) {
+if (testOptShape("An engine-specific shape")) {
     var r1 = r * 0.45;
     window_shape_set(window_shape_create_polygon_from_array([
         cx, cy,
@@ -69,21 +69,17 @@ if (testOpt("An engine-specific shape")) {
         cx, cy + r1,
     ], window_shape_polygon_mode_winding));
 }
-if (testOpt("A familiar shape")) {
+if (testOptShape("A familiar shape")) {
     window_shape_set(window_shape_combine(
         window_shape_create_polygon_from_path(pt_dino_shape, window_shape_polygon_mode_winding),
         window_shape_create_polygon_from_path(pt_dino_eye, window_shape_polygon_mode_winding),
         window_shape_operation_diff
     ));
 }
-drawText(5, 5, text);
-
-text = "More things:\n";
-key = ord("A");
 
 var _star = -1;
-if (testOpt("Star, alternate")) _star = window_shape_polygon_mode_alternate;
-if (testOpt("Star, winding")) _star = window_shape_polygon_mode_winding;
+if (testOptShape("Star, alternate")) _star = window_shape_polygon_mode_alternate;
+if (testOptShape("Star, winding")) _star = window_shape_polygon_mode_winding;
 if (_star != -1) {
     var f = 30;
     var n = 5;
@@ -98,13 +94,18 @@ if (_star != -1) {
     window_shape_set(window_shape_create_polygon_from_array(arr, _star));
 }
 
-if (testOpt("Sprite shape (slow!)")) {
+drawText(5, 5, text);
+
+text = "More things:\n";
+key = ord("A");
+
+if (testOptShape("Sprite shape (slow!)")) {
     var s = window_shape_create_rectangles_from_sprite(spr_oh_no, 0, 200);
     window_shape_shift(s, random(w - sprite_get_width(s)), random(h - sprite_get_height(s)));
     window_shape_set(s);
 }
 
-if (testOpt("Moving shape")) {
+if (testOptShape("Moving shape")) {
     peep_enabled = true;
 }
 if (peep_enabled) {
@@ -122,14 +123,14 @@ if (peep_enabled) {
     )) + "\n";*/
 }
 
-if (testOpt("Transformed shape")) {
+if (testOptShape("Transformed shape")) {
     var _circle = window_shape_create_circle(100, 100, 100);
     var _transf = window_shape_transform(_circle, 1, -0.2, -0.2, 1, 50, 50);
     window_shape_set(_transf);
     window_shape_destroy(_circle);
 }
 
-if (testOpt("XOR")) {
+if (testOptShape("XOR")) {
     var f = 45;
     var _shape = window_shape_create_empty();
     var r1 = r * 0.5;
@@ -144,7 +145,7 @@ if (testOpt("XOR")) {
     window_shape_set(_shape);
 }
 
-if (testOpt("Uh oh")) {
+if (testOptShape("Uh oh")) {
     var t0 = current_time;
     var r1 = point_distance(0, 0, w/2, h/2);
     for (;;) {
@@ -170,4 +171,31 @@ if (testOpt(
 	window_enable_per_pixel_alpha();
 }
 
+if (testOpt("Alpha")) {
+	var a = window_get_alpha();
+	trace("alpha", a);
+	a = a == 1 ? 0.5 : 1;
+	window_set_alpha(a);
+}
+if (testOpt("Chromakey")) {
+	var c = window_get_chromakey();
+	trace("chroma", c);
+	if (c != -1) {
+		c = -1;
+	} else {
+		c = c_red;
+	}
+	chroma_hole = c != -1;
+	window_set_chromakey(c);
+}
+
 drawText(w/2, 5, text);
+
+if (chroma_hole) {
+	var cx = w / 2 - 25;
+	var cy = h / 2;
+	draw_set_color(c_black);
+	draw_circle(cx, cy, 23, false);
+	draw_set_color(c_red);
+	draw_circle(cx, cy, 20, false);
+}
