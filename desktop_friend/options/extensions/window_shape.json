@@ -1,0 +1,9 @@
+{
+  "extensionId": {
+    "name": "window_shape",
+    "path": "extensions/window_shape/window_shape.yy"
+  },
+  "resourceVersion": "1.0",
+  "resourceType": "GMExtensionConfigSet",
+  "configurables": null
+}
