@@ -56,7 +56,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -68,7 +68,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -80,7 +80,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -92,7 +92,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -104,7 +104,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -116,7 +116,19 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_shape_create_polygon_from_array_raw</name>
+          <externalName>window_shape_create_polygon_from_array_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -128,7 +140,19 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_shape_create_polygon_from_path_array_raw</name>
+          <externalName>window_shape_create_polygon_from_path_array_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -140,7 +164,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -152,7 +176,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -164,7 +188,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -176,7 +200,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -188,7 +212,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -200,7 +224,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -212,7 +236,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -224,7 +248,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -236,7 +260,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -248,7 +272,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -260,7 +284,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -272,7 +296,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -284,7 +308,7 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -296,18 +320,19 @@
           <argCount>2</argCount>
           <args>
             <arg>1</arg>
-            <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
-          <name>window_shape_init_raw</name>
-          <externalName>window_shape_init_raw</externalName>
+          <name>window_shape_init_1_raw</name>
+          <externalName>window_shape_init_1_raw</externalName>
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -444,15 +469,6 @@
           </args>
         </function>
         <function>
-          <name>window_shape_create_polygon_from_array</name>
-          <externalName>window_shape_create_polygon_from_array</externalName>
-          <kind>2</kind>
-          <help>window_shape_create_polygon_from_array(point_array, mode, ?count)-&gt;window_shape</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
           <name>window_shape_create_polygon_from_path</name>
           <externalName>window_shape_create_polygon_from_path</externalName>
           <kind>2</kind>
@@ -582,10 +598,35 @@
           <args/>
         </function>
         <function>
+          <name>window_shape_create_polygon_from_array</name>
+          <externalName>window_shape_create_polygon_from_array</externalName>
+          <kind>2</kind>
+          <help>window_shape_create_polygon_from_array(array:array&lt;int&gt;, mode:int, count:int = -1)-&gt;window_shape</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
           <name>window_shape_create_polygon_from_path_data</name>
           <externalName>window_shape_create_polygon_from_path_data</externalName>
           <kind>11</kind>
           <help></help>
+          <returnType>2</returnType>
+          <argCount>6</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_shape_create_polygon_from_path_array</name>
+          <externalName>window_shape_create_polygon_from_path_array</externalName>
+          <kind>2</kind>
+          <help>window_shape_create_polygon_from_path_array(arr:array&lt;number&gt;, mode:int, closed:bool, smooth:bool, precision:int, count:int)-&gt;window_shape</help>
           <returnType>2</returnType>
           <argCount>6</argCount>
           <args>
@@ -773,6 +814,15 @@
           <args>
             <arg>2</arg>
           </args>
+        </function>
+        <function>
+          <name>window_shape_init_1</name>
+          <externalName>window_shape_init_1</externalName>
+          <kind>2</kind>
+          <help>window_shape_init_1()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
         </function>
       </functions>
       <constants/>

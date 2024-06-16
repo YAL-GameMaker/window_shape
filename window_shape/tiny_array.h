@@ -11,7 +11,7 @@ template<typename T> class tiny_array {
 			auto new_capacity = _capacity * 2;
 			auto new_data = realloc_arr(_data, _capacity);
 			if (new_data == nullptr) {
-				trace("Failed to reallocate %u bytes in tiny_array::add", sizeof(T) * new_capacity);
+				show_error("Failed to reallocate %u bytes in tiny_array::add", sizeof(T) * new_capacity);
 				return false;
 			}
 			for (size_t i = _capacity; i < new_capacity; i++) new_data[i] = {};

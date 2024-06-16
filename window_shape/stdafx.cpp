@@ -34,6 +34,24 @@ void trace(const char* pszFormat, ...) {
 #endif
 #endif
 
+#ifdef _show_error
+#ifdef _WINDOWS
+// https://yal.cc/printf-without-standard-library/
+void show_error(const char* pszFormat, ...) {
+	char buf[1024];
+	wsprintfA(buf, "%s", trace_prefix);
+	va_list argList;
+	va_start(argList, pszFormat);
+	wvsprintfA(buf + sizeof(trace_prefix) - 1, pszFormat, argList);
+	va_end(argList);
+	auto len = strlen(buf);
+	buf[len] = '\n';
+	buf[++len] = 0;
+	MessageBoxA(0, buf, gm_extension_name, MB_OK | MB_ICONERROR);
+}
+#endif
+#endif
+
 #pragma warning(disable: 28251 28252)
 
 #ifdef tiny_memset
@@ -73,7 +91,15 @@ void* __cdecl malloc(size_t _Size) {
 	return HeapAlloc(GetProcessHeap(), 0, _Size);
 }
 void* __cdecl realloc(void* _Block, size_t _Size) {
-	return HeapReAlloc(GetProcessHeap(), 0, _Block, _Size);
+	auto heap = GetProcessHeap();
+	void* result;
+	if (_Block == nullptr) {
+		// unlike the CRT realloc, HeapReAlloc won't Alloc if a block is NULL
+		result = HeapAlloc(heap, HEAP_ZERO_MEMORY, _Size);
+	} else {
+		result = HeapReAlloc(heap, HEAP_ZERO_MEMORY, _Block, _Size);
+	}
+	return result;
 }
 void __cdecl free(void* _Block) {
 	HeapFree(GetProcessHeap(), 0, _Block);
@@ -84,6 +110,20 @@ void __cdecl free(void* _Block) {
 // https:/stackoverflow.com/a/55011686/5578773
 extern "C" unsigned int _dtoui3(const double x) {
 	return (unsigned int)_mm_cvttsd_si32(_mm_set_sd(x));
+}
+#endif
+
+#if defined(tiny_ftol2) && (INTPTR_MAX == INT32_MAX)
+// silly solutions for 32-bit problems
+extern "C" int64_t _ftol2(const double x) {
+	// https://stackoverflow.com/questions/17035464/a-fast-method-to-round-a-double-to-a-32-bit-int-explained
+	int64_t result;
+	result = (int)x;
+	/*__asm {
+		fld x
+		fistp result
+	}*/
+	return result;
 }
 #endif
 

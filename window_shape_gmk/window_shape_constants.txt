@@ -1,0 +1,7 @@
+window_shape_polygon_mode_alternate=1
+window_shape_polygon_mode_winding=2
+window_shape_operation_copy=5
+window_shape_operation_diff=4
+window_shape_operation_and=1
+window_shape_operation_or=2
+window_shape_operation_xor=3

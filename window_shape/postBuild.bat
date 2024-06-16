@@ -9,12 +9,17 @@ echo Running post-build for %config%
 
 set extName=window_shape
 set dllName=window_shape
+
+set gmlDir8=%solutionDir%window_shape_gmk
 set gmlDir14=%solutionDir%window_shape.gmx
 set gmlDir22=%solutionDir%window_shape_yy
 set gmlDir23=%solutionDir%window_shape_23
+
+set ext8=%gmlDir8%
 set ext14=%gmlDir14%\extensions\%extName%
 set ext22=%gmlDir22%\extensions\%extName%
 set ext23=%gmlDir23%\extensions\%extName%
+
 set dllRel=%dllName%.dll
 set cppRel=%dllName%.cpp
 set cppPath=%ext23%\%cppRel%
@@ -50,6 +55,14 @@ if %ERRORLEVEL% EQU 0 (
 	--copy "%dllPath%" "%dllRel%:%arch%" ^
 	--copy "%cppPath%" "%cppRel%" ^
 	--copy "%gmlPath%" "*.gml"
+
+	gmxgen "%ext8%\%extName%.gmxgen81" ^
+	--copy "%dllPath%" "%dllRel%:%arch%" ^
+	--copy "%dllPath%" "%dllRel%:%arch%" ^
+	--copy "%cppPath%" "%cppRel%" ^
+	--copy "%ext23%\window_shape.gml" "window_shape_core.gml" ^
+	--gmk-loader window_shape_init_dll^
+	--strip-cc --disable-incompatible
 
 ) else (
 

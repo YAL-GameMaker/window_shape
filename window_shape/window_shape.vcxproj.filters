@@ -36,6 +36,9 @@
     <ClInclude Include="window_shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tiny_const_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -99,7 +99,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_empty_raw",
                     "help": "",
@@ -115,7 +115,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_rectangle_raw",
                     "help": "",
@@ -131,7 +131,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_round_rectangle_raw",
                     "help": "",
@@ -147,7 +147,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_ellipse_raw",
                     "help": "",
@@ -163,7 +163,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_circle_raw",
                     "help": "",
@@ -179,7 +179,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_polygon_from_buffer_raw",
                     "help": "",
@@ -189,13 +189,29 @@
                     "returnType": 2
                 },
                 {
+                    "id": "1e0e1355-5d53-861c-240e-9e2a14ca4493",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 2,
+                    "args": [
+                        1,
+                        2
+                    ],
+                    "externalName": "window_shape_create_polygon_from_array_raw",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_shape_create_polygon_from_array_raw",
+                    "returnType": 2
+                },
+                {
                     "id": "1e0e1355-2a24-f11c-9fb5-52e6dd2411c3",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_polygon_from_path_data_raw",
                     "help": "",
@@ -205,13 +221,29 @@
                     "returnType": 2
                 },
                 {
+                    "id": "ca6102ac-83de-430a-fcab-2cf2cac3a0d3",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 2,
+                    "args": [
+                        1,
+                        2
+                    ],
+                    "externalName": "window_shape_create_polygon_from_path_array_raw",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_shape_create_polygon_from_path_array_raw",
+                    "returnType": 2
+                },
+                {
                     "id": "0f1f0244-808e-5b0d-062c-70c4fd9f22f2",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_create_rectangles_from_rgba_raw",
                     "help": "",
@@ -227,7 +259,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_duplicate_raw",
                     "help": "",
@@ -243,7 +275,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_shift_raw",
                     "help": "",
@@ -259,7 +291,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_transform_raw",
                     "help": "",
@@ -275,7 +307,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_combine_raw",
                     "help": "",
@@ -291,7 +323,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_combine_nc_raw",
                     "help": "",
@@ -307,7 +339,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_concat_raw",
                     "help": "",
@@ -323,7 +355,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_concat_nc_raw",
                     "help": "",
@@ -339,7 +371,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_contains_point_raw",
                     "help": "",
@@ -355,7 +387,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_contains_rectangle_raw",
                     "help": "",
@@ -371,7 +403,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_set_raw",
                     "help": "",
@@ -387,7 +419,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_set_nc_raw",
                     "help": "",
@@ -403,7 +435,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_reset_raw",
                     "help": "",
@@ -419,7 +451,7 @@
                     "argCount": 2,
                     "args": [
                         1,
-                        1
+                        2
                     ],
                     "externalName": "window_shape_destroy_raw",
                     "help": "",
@@ -429,18 +461,19 @@
                     "returnType": 2
                 },
                 {
-                    "id": "c3966a52-97af-d0d0-7aef-e6cc695bfb7f",
+                    "id": "d2c2df99-c4ca-1fd0-9fb5-70c4fa71885f",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
-                    "externalName": "window_shape_init_raw",
+                    "externalName": "window_shape_init_1_raw",
                     "help": "",
                     "hidden": true,
                     "kind": 11,
-                    "name": "window_shape_init_raw",
+                    "name": "window_shape_init_1_raw",
                     "returnType": 2
                 },
                 {
@@ -584,21 +617,6 @@
                     "hidden": true,
                     "kind": 11,
                     "name": "window_shape_prepare_buffer_alt",
-                    "returnType": 2
-                },
-                {
-                    "id": "e0d29e4f-c79d-196d-4c83-3ddf6d113749",
-                    "modelName": "GMExtensionFunction",
-                    "mvc": "1.0",
-                    "argCount": -1,
-                    "args": [
-                        
-                    ],
-                    "externalName": "window_shape_create_polygon_from_array",
-                    "help": "window_shape_create_polygon_from_array(point_array, mode, ?count)->window_shape",
-                    "hidden": false,
-                    "kind": 2,
-                    "name": "window_shape_create_polygon_from_array",
                     "returnType": 2
                 },
                 {
@@ -777,6 +795,21 @@
                     "returnType": 2
                 },
                 {
+                    "id": "c805dfbb-2232-ce16-38b1-11f63c9f482b",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": -1,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_shape_create_polygon_from_array",
+                    "help": "window_shape_create_polygon_from_array(array:array<int>, mode:int, count:int = -1)->window_shape",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "window_shape_create_polygon_from_array",
+                    "returnType": 2
+                },
+                {
                     "id": "bb7013ca-5e03-e9a0-5332-0ed5cca5c6d3",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
@@ -794,6 +827,26 @@
                     "hidden": true,
                     "kind": 11,
                     "name": "window_shape_create_polygon_from_path_data",
+                    "returnType": 2
+                },
+                {
+                    "id": "f53a8b2a-9d3d-b2ff-2358-2f60c7bf5b0b",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 6,
+                    "args": [
+                        2,
+                        2,
+                        2,
+                        2,
+                        2,
+                        2
+                    ],
+                    "externalName": "window_shape_create_polygon_from_path_array",
+                    "help": "window_shape_create_polygon_from_path_array(arr:array<number>, mode:int, closed:bool, smooth:bool, precision:int, count:int)->window_shape",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "window_shape_create_polygon_from_path_array",
                     "returnType": 2
                 },
                 {
@@ -1029,6 +1082,21 @@
                     "hidden": false,
                     "kind": 2,
                     "name": "window_shape_destroy",
+                    "returnType": 2
+                },
+                {
+                    "id": "5e2546bd-ee03-cb89-cf23-d8b6d604d71f",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_shape_init_1",
+                    "help": "window_shape_init_1()",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "window_shape_init_1",
                     "returnType": 2
                 }
             ],

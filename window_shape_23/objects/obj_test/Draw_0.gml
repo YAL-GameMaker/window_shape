@@ -50,8 +50,7 @@ if (testOptShape("A donut?")) {
     ));
 }
 if (testOptShape("A smooth shape")) {
-    window_shape_set(window_shape_create_polygon_from_path(
-		pt_smooth, window_shape_polygon_mode_winding));
+    window_shape_set(window_shape_create_polygon_from_path(pt_smooth, window_shape_polygon_mode_winding));
 }
 if (testOptShape("An engine-specific shape")) {
     var r1 = r * 0.45;

@@ -2,6 +2,7 @@
 
 #include <dwmapi.h>
 #include "stdafx.h"
+#include "tiny_const_array.h"
 
 // @dllg:docname window_shape window_shape
 
@@ -34,23 +35,35 @@ dllg gml_id<window_shape> window_shape_create_polygon_from_buffer(gml_buffer b, 
 	if (count == -1) count = b.tell() / 8;
 	return CreatePolygonRgn((POINT*)b.data(), count, mode);
 }
+dllg gml_id<window_shape> window_shape_create_polygon_from_array(tiny_const_array<int32_t> array, int mode, int count = -1) {
+	if (count == -1) count = (int)array.size() / 2;
+	return CreatePolygonRgn((POINT*)array.data(), count, mode);
+}
+static gmk_buffer path_data_buf{};
 /// ~
 dllg gml_id<window_shape> window_shape_create_polygon_from_path_data(gml_buffer b, int mode, bool closed, bool smooth, int precision, int count) {
 	struct GmlPathPoint { double x, y; };
 	static_assert(sizeof(GmlPathPoint) == 16);
 
+	if (b.size() < (int)(sizeof(GmlPathPoint) * count)) return 0;
+
 	auto in = (GmlPathPoint*)b.data();
-	auto points = (POINT*)(in + count);
-	auto out = points;
 	if (!smooth) {
-		if (b.size() < sizeof(GmlPathPoint) * count + sizeof(POINT) * count) return 0;
+		auto points = (POINT*)path_data_buf.prepare(sizeof(POINT) * count);
+		if (points == nullptr) return 0;
+		auto out = points;
+
 		for (int i = 0; i < count; i++, in++, out++) {
 			out->x = (int)in->x;
 			out->y = (int)in->y;
 		}
 		return CreatePolygonRgn(points, count, mode);
 	}
-	if (b.size() < sizeof(GmlPathPoint) * count + sizeof(POINT) * precision * count) return 0;
+
+	auto points = (POINT*)path_data_buf.prepare(sizeof(POINT) * precision * count);
+	if (points == nullptr) return 0;
+	auto out = points;
+
 	auto step = 1. / (double)precision;
 	int last = count - 1;
 	auto curr = &in[closed ? last : 0];
@@ -77,6 +90,10 @@ dllg gml_id<window_shape> window_shape_create_polygon_from_path_data(gml_buffer 
 		}
 	}
 	return CreatePolygonRgn(points, count * precision, mode);
+}
+dllg gml_id<window_shape> window_shape_create_polygon_from_path_array(tiny_const_array<double> arr, int mode, bool closed, bool smooth, int precision, int count) {
+	gml_buffer b((uint8_t*)arr.data(), (int)arr.size() * 8, 0);
+	return window_shape_create_polygon_from_path_data(b, mode, closed, smooth, precision, count);
 }
 
 inline void window_shape_create_rectangles_from_rgba_1(window_shape result, int y, int x1, int x2) {
@@ -204,18 +221,19 @@ dllg void window_shape_destroy(gml_id_destroy<window_shape> shape) {
 	DeleteObject(shape);
 }
 
-dllx void window_shape_init_raw(void* _hwnd) {
-	hwnd = (HWND)_hwnd;
+dllg void window_shape_init_1(GAME_HWND _hwnd) {
+	hwnd = _hwnd;
 }
 
 ///
-dllx void window_enable_per_pixel_alpha() {
+dllx double window_enable_per_pixel_alpha() {
 	DWM_BLURBEHIND bb = { 0 };
 	bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
 	bb.hRgnBlur = CreateRectRgn(0, 0, -1, -1);
 	bb.fEnable = TRUE;
 	DwmEnableBlurBehindWindow(hwnd, &bb);
 	// todo: WM_NCHITTEST?
+	return 1;
 }
 
 static LONG GetWindowExStyle(HWND hwnd) {
@@ -250,12 +268,12 @@ dllx double window_get_alpha() {
 	return (double)alpha / 255;
 }
 ///
-dllx void window_set_alpha(double alpha) {
+dllx double window_set_alpha(double alpha) {
 	bool set = alpha < 1;
 	if (set) {
 		SetWindowLayered(hwnd, true);
 	} else {
-		if (!GetWindowLayered(hwnd)) return;
+		if (!GetWindowLayered(hwnd)) return 1;
 	}
 	//
 	BYTE bAlpha = 0;
@@ -273,6 +291,7 @@ dllx void window_set_alpha(double alpha) {
 		SetLayeredWindowAttributes(hwnd, crKey, 255, flags);
 		if (flags == 0) SetWindowLayered(hwnd, false);
 	}
+	return 1;
 }
 ///
 dllx double window_get_chromakey() {
@@ -284,12 +303,12 @@ dllx double window_get_chromakey() {
 	return crKey;
 }
 ///
-dllx void window_set_chromakey(double color) {
+dllx double window_set_chromakey(double color) {
 	bool set = color >= 0;
 	if (set) {
 		SetWindowLayered(hwnd, true);
 	} else {
-		if (!GetWindowLayered(hwnd)) return;
+		if (!GetWindowLayered(hwnd)) return 1;
 	}
 	//
 	BYTE bAlpha = 0;
@@ -307,10 +326,13 @@ dllx void window_set_chromakey(double color) {
 		SetLayeredWindowAttributes(hwnd, crKey, bAlpha, flags);
 		if (flags == 0) SetWindowLayered(hwnd, false);
 	}
+	return 1;
 }
 
+extern gmk_buffer gmk_buffer_args;
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
 	if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
+		gmk_buffer_args.init();
 		hwnd = 0;
 	}
 	/*switch (ul_reason_for_call) {
